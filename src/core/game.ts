@@ -1,5 +1,7 @@
+import { GameOptions } from "./game-options";
+
 export class Game {
-    public static test() {
-        console.log("It works!");
+    public static launch(options: GameOptions) {
+        // TODO
     }
 }
