@@ -85,21 +85,21 @@ export class Game {
     }
 
     private _start() {
-        this._scene["_initialize"]();
-        this._frame();
+        this._scene["_initialize"]().then(() => this._frame());
     }
 
     private _update() {
         const scene = this._scene;
         scene.update();
-        this._frame();
-        if (this._scene !== scene) {
-            scene.stop();
-            this._scene["_initialize"]();
-        }
+        return this._frame().then(() => {
+            if (this._scene !== scene) {
+                scene.stop();
+                return this._scene["_initialize"]();
+            }
+        });
     }
 
     private _frame() {
-        requestAnimationFrame(() => this._update());
+        return new Promise(resolve => requestAnimationFrame(() => this._update().then(resolve)));
     }
 }

@@ -1,17 +1,17 @@
 export abstract class Scene {
     private _initialized: boolean = false;
 
-    private _initialize() {
+    private async _initialize() {
         if (!this._initialized) {
             this._initialized = true;
-            this.initialize();
+            await this.initialize();
         }
-        this.start();
+        return this.start();
     }
 
-    public abstract initialize(): void;
+    public abstract initialize(): void | Promise<void>;
 
-    public abstract start(): void;
+    public abstract start(): void | Promise<void>;
 
     public abstract stop(): void;
 
