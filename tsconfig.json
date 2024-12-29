@@ -3,8 +3,6 @@
     "target": "ES2020",
     "module": "ESNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "declaration": true,
-    "declarationDir": "types",
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
