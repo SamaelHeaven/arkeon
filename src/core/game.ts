@@ -90,16 +90,19 @@ export class Game {
         this._scene["_initialize"]().then(() => this._frame());
     }
 
-    private async _update() {
-        const scene = this._scene;
+    private _update() {
         this._time["_update"]();
+        const scene = this._scene;
         scene.update();
-        await this._frame();
-        if (this._scene !== scene) {
+        return this._frame().then(() => {
+            if (this._scene === scene) {
+                return;
+            }
             scene.stop();
-            await this._scene["_initialize"]();
-            this._time["_restart"]();
-        }
+            return this._scene["_initialize"]().then(() => {
+                this._time["_restart"]();
+            });
+        });
     }
 
     private _frame() {
