@@ -1,9 +1,11 @@
 import { GameOptions } from "./game-options";
 import { Scene } from "./scene";
+import { Time } from "./time";
 
 export class Game {
     private static _instanceRef: Game | null = null;
     private static _launched = false;
+    private _time = Time["_instance"];
     private _root: HTMLElement = null!;
     private _canvas: HTMLCanvasElement = null!;
     private _scene: Scene = null!;
@@ -89,12 +91,15 @@ export class Game {
     }
 
     private _update() {
+        this._time["_update"]();
         const scene = this._scene;
         scene.update();
         return this._frame().then(() => {
             if (this._scene !== scene) {
                 scene.stop();
-                return this._scene["_initialize"]();
+                return this._scene["_initialize"]().then(() => {
+                    this._time["_restart"]();
+                });
             }
         });
     }
