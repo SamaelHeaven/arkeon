@@ -32,8 +32,8 @@ export class Time {
     }
 
     public static get currentFPS(): number {
-        const instance = this._self;
-        return instance._delta <= 0 ? 0 : 1 / instance._delta;
+        const self = this._self;
+        return self._delta <= 0 ? 0 : 1 / self._delta;
     }
 
     private static get _self() {
