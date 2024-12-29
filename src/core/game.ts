@@ -3,9 +3,9 @@ import { Scene } from "./scene";
 import { Time } from "./time";
 
 export class Game {
-    private static _instanceRef: Game | null = null;
+    private static _instance: Game | null = null;
     private static _launched = false;
-    private readonly _time = Time["_instance"];
+    private readonly _time = Time["_self"];
     private _root: HTMLElement = null!;
     private _canvas: HTMLCanvasElement = null!;
     private _scene: Scene = null!;
@@ -17,37 +17,37 @@ export class Game {
     }
 
     public static get root() {
-        return this._instance._root;
+        return this._self._root;
     }
 
     public static get canvas() {
-        return this._instance._canvas;
+        return this._self._canvas;
     }
 
     public static get scene() {
-        return this._instance._scene;
+        return this._self._scene;
     }
 
     public static set scene(scene: Scene) {
-        this._instance._scene = scene;
+        this._self._scene = scene;
     }
 
     public static get width() {
-        return this._instance._width;
+        return this._self._width;
     }
 
     public static get height() {
-        return this._instance._height;
+        return this._self._height;
     }
 
     public static launch(options: GameOptions) {
         this._ensureNotLaunched();
         this._launched = true;
-        this._instance._launch(options);
+        this._self._launch(options);
     }
 
-    private static get _instance() {
-        return (this._instanceRef ??= new this());
+    private static get _self() {
+        return (this._instance ??= new this());
     }
 
     private static _ensureNotLaunched() {

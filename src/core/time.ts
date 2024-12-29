@@ -2,7 +2,7 @@ import { Duration } from "./duration";
 import { Game } from "./game";
 
 export class Time {
-    private static _instanceRef: Time | null = null;
+    private static _instance: Time | null = null;
     private readonly _launchTime = performance.now();
     private readonly _fixedDelta = 1 / 60;
     private _startTime: number = this._launchTime;
@@ -16,28 +16,28 @@ export class Time {
     }
 
     public static get elapsed(): Duration {
-        return Duration.fromMilliseconds(performance.now() - this._instance._launchTime);
+        return Duration.fromMilliseconds(performance.now() - this._self._launchTime);
     }
 
     public static get delta(): number {
-        return this._instance._delta;
+        return this._self._delta;
     }
 
     public static get fixedDelta(): number {
-        return this._instance._fixedDelta;
+        return this._self._fixedDelta;
     }
 
     public static get averageFPS(): number {
-        return this._instance._averageFPS;
+        return this._self._averageFPS;
     }
 
     public static get currentFPS(): number {
-        const instance = this._instance;
+        const instance = this._self;
         return instance._delta <= 0 ? 0 : 1 / instance._delta;
     }
 
-    private static get _instance() {
-        return (this._instanceRef ??= new this());
+    private static get _self() {
+        return (this._instance ??= new this());
     }
 
     private _update() {
