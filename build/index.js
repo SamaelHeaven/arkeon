@@ -1,6 +1,6 @@
-class Collection {
-    constructor() { }
-    static addAll(destination, elements) {
+var Collection;
+(function (Collection) {
+    function addAll(destination, elements) {
         if (destination instanceof Set) {
             for (const element of elements) {
                 destination.add(element);
@@ -12,7 +12,8 @@ class Collection {
         }
         return destination;
     }
-    static removeAll(destination, elements) {
+    Collection.addAll = addAll;
+    function removeAll(destination, elements) {
         if (destination instanceof Set) {
             for (const element of elements) {
                 destination.delete(element);
@@ -30,7 +31,8 @@ class Collection {
         }
         return destination;
     }
-}
+    Collection.removeAll = removeAll;
+})(Collection || (Collection = {}));
 
 var Key;
 (function (Key) {

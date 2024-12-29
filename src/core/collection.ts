@@ -1,7 +1,8 @@
-export class Collection {
-    private constructor() {}
-
-    public static addAll<E, D extends Array<E> | Set<E>>(destination: D, elements: Iterable<E>): D {
+export namespace Collection {
+    export function addAll<E, D extends Array<E> | Set<E>>(
+        destination: D,
+        elements: Iterable<E>
+    ): D {
         if (destination instanceof Set) {
             for (const element of elements) {
                 destination.add(element);
@@ -14,7 +15,7 @@ export class Collection {
         return destination;
     }
 
-    public static removeAll<E, D extends Array<E> | Set<E>>(
+    export function removeAll<E, D extends Array<E> | Set<E>>(
         destination: D,
         elements: Iterable<E>
     ): D {
