@@ -9,7 +9,7 @@ export class Duration {
         minutes: 60 * 1e9,
         hours: 60 * 60 * 1e9,
         days: 24 * 60 * 60 * 1e9
-    };
+    } as const;
     private readonly _nanoseconds: number;
 
     constructor(value: number, unit: DurationUnit) {
