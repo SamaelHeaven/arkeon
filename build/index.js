@@ -1,6 +1,15 @@
+const units = {
+    nanoseconds: 1,
+    microseconds: 1e3,
+    milliseconds: 1e6,
+    seconds: 1e9,
+    minutes: 60 * 1e9,
+    hours: 60 * 60 * 1e9,
+    days: 24 * 60 * 60 * 1e9
+};
 class Duration {
     constructor(value, unit) {
-        this._nanoseconds = value * Duration._units[unit];
+        this._nanoseconds = value * units[unit];
     }
     static fromNanoseconds(value) {
         return new Duration(value, "nanoseconds");
@@ -24,7 +33,7 @@ class Duration {
         return new Duration(value, "days");
     }
     to(unit) {
-        return this._nanoseconds / Duration._units[unit];
+        return this._nanoseconds / units[unit];
     }
     get nanoseconds() {
         return this.to("nanoseconds");
@@ -68,15 +77,6 @@ class Duration {
         return parts.length > 0 ? parts.join(" ") : "0ms";
     }
 }
-Duration._units = {
-    nanoseconds: 1,
-    microseconds: 1e3,
-    milliseconds: 1e6,
-    seconds: 1e9,
-    minutes: 60 * 1e9,
-    hours: 60 * 60 * 1e9,
-    days: 24 * 60 * 60 * 1e9
-};
 
 class Time {
     constructor() {

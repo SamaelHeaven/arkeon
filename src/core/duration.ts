@@ -1,19 +1,20 @@
-export type DurationUnit = keyof (typeof Duration)["_units"];
+const units = {
+    nanoseconds: 1,
+    microseconds: 1e3,
+    milliseconds: 1e6,
+    seconds: 1e9,
+    minutes: 60 * 1e9,
+    hours: 60 * 60 * 1e9,
+    days: 24 * 60 * 60 * 1e9
+} as const;
+
+export type DurationUnit = keyof typeof units;
 
 export class Duration {
-    private static readonly _units = {
-        nanoseconds: 1,
-        microseconds: 1e3,
-        milliseconds: 1e6,
-        seconds: 1e9,
-        minutes: 60 * 1e9,
-        hours: 60 * 60 * 1e9,
-        days: 24 * 60 * 60 * 1e9
-    } as const;
     private readonly _nanoseconds: number;
 
     constructor(value: number, unit: DurationUnit) {
-        this._nanoseconds = value * Duration._units[unit];
+        this._nanoseconds = value * units[unit];
     }
 
     public static fromNanoseconds(value: number): Duration {
@@ -45,7 +46,7 @@ export class Duration {
     }
 
     public to(unit: DurationUnit): number {
-        return this._nanoseconds / Duration._units[unit];
+        return this._nanoseconds / units[unit];
     }
 
     public get nanoseconds(): number {
