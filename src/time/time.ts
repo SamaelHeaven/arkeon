@@ -1,5 +1,5 @@
+import { Game } from "../core/game";
 import { Duration } from "./duration";
-import { Game } from "./game";
 
 export class Time {
     private static _instance: Time | null = null;

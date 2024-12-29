@@ -25,6 +25,9 @@ export class Collection {
             return destination;
         }
         const set = new Set(elements);
+        if (!set.size) {
+            return destination;
+        }
         for (let i = destination.length - 1; i >= 0; i--) {
             if (set.has(destination[i])) {
                 destination.splice(i, 1);

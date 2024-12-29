@@ -1,7 +1,7 @@
 import { Keyboard } from "../input";
+import { Time } from "../time/time";
 import { GameOptions } from "./game-options";
 import { Scene } from "./scene";
-import { Time } from "./time";
 
 export class Game {
     private static _instance: Game | null = null;
