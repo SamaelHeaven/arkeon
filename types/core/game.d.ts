@@ -1,7 +1,7 @@
 import { GameOptions } from "./game-options";
 import { Scene } from "./scene";
 export declare class Game {
-    private static _instanceRef;
+    private static _instance;
     private static _launched;
     private readonly _time;
     private _root;
@@ -17,7 +17,7 @@ export declare class Game {
     static get width(): number;
     static get height(): number;
     static launch(options: GameOptions): void;
-    private static get _instance();
+    private static get _self();
     private static _ensureNotLaunched;
     private static _ensureLaunched;
     private _launch;

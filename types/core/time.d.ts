@@ -1,6 +1,6 @@
 import { Duration } from "./duration";
 export declare class Time {
-    private static _instanceRef;
+    private static _instance;
     private readonly _launchTime;
     private readonly _fixedDelta;
     private _startTime;
@@ -14,7 +14,7 @@ export declare class Time {
     static get fixedDelta(): number;
     static get averageFPS(): number;
     static get currentFPS(): number;
-    private static get _instance();
+    private static get _self();
     private _update;
     private _restart;
 }

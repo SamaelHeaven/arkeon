@@ -90,23 +90,23 @@ class Time {
         Game["_ensureLaunched"]();
     }
     static get elapsed() {
-        return Duration.fromMilliseconds(performance.now() - this._instance._launchTime);
+        return Duration.fromMilliseconds(performance.now() - this._self._launchTime);
     }
     static get delta() {
-        return this._instance._delta;
+        return this._self._delta;
     }
     static get fixedDelta() {
-        return this._instance._fixedDelta;
+        return this._self._fixedDelta;
     }
     static get averageFPS() {
-        return this._instance._averageFPS;
+        return this._self._averageFPS;
     }
     static get currentFPS() {
-        const instance = this._instance;
+        const instance = this._self;
         return instance._delta <= 0 ? 0 : 1 / instance._delta;
     }
-    static get _instance() {
-        return (this._instanceRef ?? (this._instanceRef = new this()));
+    static get _self() {
+        return (this._instance ?? (this._instance = new this()));
     }
     _update() {
         const ticks = performance.now() - this._startTime;
@@ -124,11 +124,11 @@ class Time {
         this._averageFPS = 0;
     }
 }
-Time._instanceRef = null;
+Time._instance = null;
 
 class Game {
     constructor() {
-        this._time = Time["_instance"];
+        this._time = Time["_self"];
         this._root = null;
         this._canvas = null;
         this._scene = null;
@@ -137,30 +137,30 @@ class Game {
         Game._ensureLaunched();
     }
     static get root() {
-        return this._instance._root;
+        return this._self._root;
     }
     static get canvas() {
-        return this._instance._canvas;
+        return this._self._canvas;
     }
     static get scene() {
-        return this._instance._scene;
+        return this._self._scene;
     }
     static set scene(scene) {
-        this._instance._scene = scene;
+        this._self._scene = scene;
     }
     static get width() {
-        return this._instance._width;
+        return this._self._width;
     }
     static get height() {
-        return this._instance._height;
+        return this._self._height;
     }
     static launch(options) {
         this._ensureNotLaunched();
         this._launched = true;
-        this._instance._launch(options);
+        this._self._launch(options);
     }
-    static get _instance() {
-        return (this._instanceRef ?? (this._instanceRef = new this()));
+    static get _self() {
+        return (this._instance ?? (this._instance = new this()));
     }
     static _ensureNotLaunched() {
         if (this._launched) {
@@ -213,7 +213,7 @@ class Game {
         return new Promise(resolve => requestAnimationFrame(() => this._update().then(resolve)));
     }
 }
-Game._instanceRef = null;
+Game._instance = null;
 Game._launched = false;
 
 class Scene {
