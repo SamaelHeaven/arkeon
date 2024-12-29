@@ -229,6 +229,4 @@ class Scene {
     }
 }
 
-console.log("Test");
-
 export { Duration, Game, Scene, Time };
