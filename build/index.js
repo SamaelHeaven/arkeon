@@ -20,94 +20,15 @@ class Collection {
             return destination;
         }
         const set = new Set(elements);
+        if (!set.size) {
+            return destination;
+        }
         for (let i = destination.length - 1; i >= 0; i--) {
             if (set.has(destination[i])) {
                 destination.splice(i, 1);
             }
         }
         return destination;
-    }
-}
-
-var DurationUnit;
-(function (DurationUnit) {
-    DurationUnit[DurationUnit["Nanoseconds"] = 1] = "Nanoseconds";
-    DurationUnit[DurationUnit["Microseconds"] = 1000] = "Microseconds";
-    DurationUnit[DurationUnit["Milliseconds"] = 1000000] = "Milliseconds";
-    DurationUnit[DurationUnit["Seconds"] = 1000000000] = "Seconds";
-    DurationUnit[DurationUnit["Minutes"] = 60000000000] = "Minutes";
-    DurationUnit[DurationUnit["Hours"] = 3600000000000] = "Hours";
-    DurationUnit[DurationUnit["Days"] = 86400000000000] = "Days";
-})(DurationUnit || (DurationUnit = {}));
-
-class Duration {
-    constructor(value, unit) {
-        this._nanoseconds = value * unit;
-    }
-    static fromNanoseconds(value) {
-        return new Duration(value, DurationUnit.Nanoseconds);
-    }
-    static fromMicroseconds(value) {
-        return new Duration(value, DurationUnit.Microseconds);
-    }
-    static fromMilliseconds(value) {
-        return new Duration(value, DurationUnit.Milliseconds);
-    }
-    static fromSeconds(value) {
-        return new Duration(value, DurationUnit.Seconds);
-    }
-    static fromMinutes(value) {
-        return new Duration(value, DurationUnit.Minutes);
-    }
-    static fromHours(value) {
-        return new Duration(value, DurationUnit.Hours);
-    }
-    static fromDays(value) {
-        return new Duration(value, DurationUnit.Days);
-    }
-    to(unit) {
-        return this._nanoseconds / unit;
-    }
-    get nanoseconds() {
-        return this.to(DurationUnit.Nanoseconds);
-    }
-    get microseconds() {
-        return this.to(DurationUnit.Microseconds);
-    }
-    get milliseconds() {
-        return this.to(DurationUnit.Milliseconds);
-    }
-    get seconds() {
-        return this.to(DurationUnit.Seconds);
-    }
-    get minutes() {
-        return this.to(DurationUnit.Minutes);
-    }
-    get hours() {
-        return this.to(DurationUnit.Hours);
-    }
-    get days() {
-        return this.to(DurationUnit.Days);
-    }
-    add(other) {
-        return new Duration(this._nanoseconds + other._nanoseconds, DurationUnit.Nanoseconds);
-    }
-    subtract(other) {
-        return new Duration(this._nanoseconds - other._nanoseconds, DurationUnit.Nanoseconds);
-    }
-    toString() {
-        const days = Math.floor(this.days);
-        const hours = Math.floor(this.hours % 24);
-        const minutes = Math.floor(this.minutes % 60);
-        const seconds = Math.floor(this.seconds % 60);
-        const milliseconds = Math.floor(this.milliseconds % 1000);
-        const parts = [];
-        days && parts.push(`${days}d`);
-        hours && parts.push(`${hours}h`);
-        minutes && parts.push(`${minutes}m`);
-        seconds && parts.push(`${seconds}s`);
-        milliseconds && parts.push(`${milliseconds}ms`);
-        return parts.length > 0 ? parts.join(" ") : "0ms";
     }
 }
 
@@ -338,6 +259,88 @@ class Keyboard {
     }
 }
 Keyboard._instance = null;
+
+var DurationUnit;
+(function (DurationUnit) {
+    DurationUnit[DurationUnit["Nanoseconds"] = 1] = "Nanoseconds";
+    DurationUnit[DurationUnit["Microseconds"] = 1000] = "Microseconds";
+    DurationUnit[DurationUnit["Milliseconds"] = 1000000] = "Milliseconds";
+    DurationUnit[DurationUnit["Seconds"] = 1000000000] = "Seconds";
+    DurationUnit[DurationUnit["Minutes"] = 60000000000] = "Minutes";
+    DurationUnit[DurationUnit["Hours"] = 3600000000000] = "Hours";
+    DurationUnit[DurationUnit["Days"] = 86400000000000] = "Days";
+})(DurationUnit || (DurationUnit = {}));
+
+class Duration {
+    constructor(value, unit) {
+        this._nanoseconds = value * unit;
+    }
+    static fromNanoseconds(value) {
+        return new Duration(value, DurationUnit.Nanoseconds);
+    }
+    static fromMicroseconds(value) {
+        return new Duration(value, DurationUnit.Microseconds);
+    }
+    static fromMilliseconds(value) {
+        return new Duration(value, DurationUnit.Milliseconds);
+    }
+    static fromSeconds(value) {
+        return new Duration(value, DurationUnit.Seconds);
+    }
+    static fromMinutes(value) {
+        return new Duration(value, DurationUnit.Minutes);
+    }
+    static fromHours(value) {
+        return new Duration(value, DurationUnit.Hours);
+    }
+    static fromDays(value) {
+        return new Duration(value, DurationUnit.Days);
+    }
+    to(unit) {
+        return this._nanoseconds / unit;
+    }
+    get nanoseconds() {
+        return this.to(DurationUnit.Nanoseconds);
+    }
+    get microseconds() {
+        return this.to(DurationUnit.Microseconds);
+    }
+    get milliseconds() {
+        return this.to(DurationUnit.Milliseconds);
+    }
+    get seconds() {
+        return this.to(DurationUnit.Seconds);
+    }
+    get minutes() {
+        return this.to(DurationUnit.Minutes);
+    }
+    get hours() {
+        return this.to(DurationUnit.Hours);
+    }
+    get days() {
+        return this.to(DurationUnit.Days);
+    }
+    add(other) {
+        return new Duration(this._nanoseconds + other._nanoseconds, DurationUnit.Nanoseconds);
+    }
+    subtract(other) {
+        return new Duration(this._nanoseconds - other._nanoseconds, DurationUnit.Nanoseconds);
+    }
+    toString() {
+        const days = Math.floor(this.days);
+        const hours = Math.floor(this.hours % 24);
+        const minutes = Math.floor(this.minutes % 60);
+        const seconds = Math.floor(this.seconds % 60);
+        const milliseconds = Math.floor(this.milliseconds % 1000);
+        const parts = [];
+        days && parts.push(`${days}d`);
+        hours && parts.push(`${hours}h`);
+        minutes && parts.push(`${minutes}m`);
+        seconds && parts.push(`${seconds}s`);
+        milliseconds && parts.push(`${milliseconds}ms`);
+        return parts.length > 0 ? parts.join(" ") : "0ms";
+    }
+}
 
 class Time {
     constructor() {
