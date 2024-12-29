@@ -41,8 +41,8 @@ export class Time {
     }
 
     private _update() {
-        this._frameCount++;
         const ticks = performance.now() - this._startTime;
+        this._frameCount++;
         this._delta = (ticks - this._lastFrameTime) / 1e3;
         const timeInSeconds = ticks / 1e3;
         this._averageFPS = timeInSeconds === 0 ? 0 : this._frameCount / timeInSeconds;
