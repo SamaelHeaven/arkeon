@@ -1,3 +1,4 @@
+import { Keyboard } from "../input";
 import { GameOptions } from "./game-options";
 import { Scene } from "./scene";
 import { Time } from "./time";
@@ -5,7 +6,8 @@ import { Time } from "./time";
 export class Game {
     private static _instance: Game | null = null;
     private static _launched = false;
-    private readonly _time = Time["_self"];
+    private _time: Time = null!;
+    private _keyboard: Keyboard = null!;
     private _root: HTMLElement = null!;
     private _canvas: HTMLCanvasElement = null!;
     private _scene: Scene = null!;
@@ -14,6 +16,10 @@ export class Game {
 
     private constructor() {
         Game._ensureLaunched();
+    }
+
+    public static get focused(): boolean {
+        return document.activeElement === this._self._root;
     }
 
     public static get root() {
@@ -74,6 +80,8 @@ export class Game {
     private _initialize() {
         this._initializeCanvas();
         this._initializeRoot();
+        this._time = Time["_self"];
+        this._keyboard = Keyboard["_self"];
     }
 
     private _initializeCanvas() {
@@ -84,6 +92,8 @@ export class Game {
 
     private _initializeRoot() {
         this._root.appendChild(this._canvas);
+        this._root.tabIndex = 0;
+        this._root.focus();
     }
 
     private _start() {
@@ -91,8 +101,9 @@ export class Game {
     }
 
     private _update() {
-        this._time["_update"]();
         const scene = this._scene;
+        this._time["_update"]();
+        this._keyboard["_update"]();
         scene.update();
         return this._frame().then(() => {
             if (this._scene === scene) {

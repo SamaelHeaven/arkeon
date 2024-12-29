@@ -1,0 +1,33 @@
+import { Key } from "./key";
+export declare class Keyboard {
+    private static _instance;
+    private readonly _newPressedKeys;
+    private readonly _newReleasedKeys;
+    private readonly _keys;
+    private _newTypedString;
+    private _downKeys;
+    private _upKeys;
+    private _pressedKeys;
+    private _releasedKeys;
+    private _typedString;
+    private constructor();
+    static get typedString(): string;
+    static get downKeys(): ReadonlySet<Key>;
+    static get upKeys(): ReadonlySet<Key>;
+    static get pressedKeys(): ReadonlySet<Key>;
+    static get releasedKeys(): ReadonlySet<Key>;
+    static isKeyDown(key: Key): boolean;
+    static isKeyUp(key: Key): boolean;
+    static isKeyPressed(key: Key): boolean;
+    static isKeyReleased(key: Key): boolean;
+    private static get _self();
+    private _update;
+    private _onKeyDown;
+    private _onKeyUp;
+    private _updateTypedString;
+    private _updateDownKeys;
+    private _updateUpKeys;
+    private _updatePressedKeys;
+    private _updateReleasedKeys;
+    private _reset;
+}
