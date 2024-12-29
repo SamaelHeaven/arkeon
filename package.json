@@ -2,8 +2,8 @@
   "name": "arkeon",
   "main": "build/index.js",
   "types": "src/index.ts",
+  "version": "0.0.0",
   "type": "module",
-  "private": true,
   "scripts": {
     "build": "rollup -c",
     "format": "prettier --write \"**/*.{js,ts,json}\"",
