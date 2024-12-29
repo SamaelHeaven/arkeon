@@ -1,7 +1,7 @@
 export type DurationUnit = keyof (typeof Duration)["_units"];
 
 export class Duration {
-    private static _units = {
+    private static readonly _units = {
         nanoseconds: 1,
         microseconds: 1e3,
         milliseconds: 1e6,

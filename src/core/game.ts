@@ -5,7 +5,7 @@ import { Time } from "./time";
 export class Game {
     private static _instanceRef: Game | null = null;
     private static _launched = false;
-    private _time = Time["_instance"];
+    private readonly _time = Time["_instance"];
     private _root: HTMLElement = null!;
     private _canvas: HTMLCanvasElement = null!;
     private _scene: Scene = null!;

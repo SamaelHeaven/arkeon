@@ -3,12 +3,12 @@ import { Game } from "./game";
 
 export class Time {
     private static _instanceRef: Time | null = null;
-    private _launchTime = performance.now();
+    private readonly _launchTime = performance.now();
+    private readonly _fixedDelta = 1 / 60;
     private _startTime: number = this._launchTime;
     private _lastFrameTime: number = 0;
     private _frameCount: number = 0;
     private _delta: number = 0;
-    private _fixedDelta = 1 / 60;
     private _averageFPS: number = 0;
 
     private constructor() {
