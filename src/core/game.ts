@@ -1,5 +1,5 @@
 import { Keyboard } from "../input";
-import { Time } from "../time/time";
+import { Time } from "../time";
 import { GameOptions } from "./game-options";
 import { Scene } from "./scene";
 

@@ -1,4 +1,4 @@
-import { Game } from "../core/game";
+import { Game } from "../core";
 import { Duration } from "./duration";
 
 export class Time {
