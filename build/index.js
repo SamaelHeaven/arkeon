@@ -1,3 +1,34 @@
+class Collection {
+    constructor() { }
+    static addAll(destination, elements) {
+        if (destination instanceof Set) {
+            for (const element of elements) {
+                destination.add(element);
+            }
+            return destination;
+        }
+        for (const element of elements) {
+            destination.push(element);
+        }
+        return destination;
+    }
+    static removeAll(destination, elements) {
+        if (destination instanceof Set) {
+            for (const element of elements) {
+                destination.delete(element);
+            }
+            return destination;
+        }
+        const set = new Set(elements);
+        for (let i = destination.length - 1; i >= 0; i--) {
+            if (set.has(destination[i])) {
+                destination.splice(i, 1);
+            }
+        }
+        return destination;
+    }
+}
+
 const units = {
     nanoseconds: 1,
     microseconds: 1e3,
@@ -275,24 +306,24 @@ class Keyboard {
         this._newTypedString = "";
     }
     _updateDownKeys() {
-        this._downKeys.addAll(this._newPressedKeys);
+        Collection.addAll(this._downKeys, this._newPressedKeys);
         this._newPressedKeys.clear();
     }
     _updateUpKeys() {
         this._upKeys.clear();
-        this._upKeys.addAll(this._keys);
-        this._upKeys.deleteAll(this._downKeys);
+        Collection.addAll(this._upKeys, this._keys);
+        Collection.removeAll(this._upKeys, this._downKeys);
     }
     _updatePressedKeys() {
         this._pressedKeys.clear();
-        this._pressedKeys.addAll(this._newPressedKeys);
-        this._pressedKeys.deleteAll(this._downKeys);
+        Collection.addAll(this._pressedKeys, this._newPressedKeys);
+        Collection.removeAll(this._pressedKeys, this._downKeys);
     }
     _updateReleasedKeys() {
         this._releasedKeys.clear();
-        this._releasedKeys.addAll(this._newReleasedKeys);
+        Collection.addAll(this._releasedKeys, this._newReleasedKeys);
         this._newReleasedKeys.clear();
-        this._downKeys.deleteAll(this._releasedKeys);
+        Collection.removeAll(this._downKeys, this._releasedKeys);
     }
     _reset() {
         this._newTypedString = "";
@@ -466,15 +497,4 @@ class Scene {
     }
 }
 
-Set.prototype.addAll = function (elements) {
-    for (const element of elements) {
-        this.add(element);
-    }
-};
-Set.prototype.deleteAll = function (elements) {
-    for (const element of elements) {
-        this.delete(element);
-    }
-};
-
-export { Duration, Game, Key, Keyboard, Scene, Time };
+export { Collection, Duration, Game, Key, Keyboard, Scene, Time };

@@ -1,4 +1,4 @@
-import { Game } from "../core";
+import { Collection, Game } from "../core";
 import { Key } from "./key";
 
 export class Keyboard {
@@ -87,27 +87,27 @@ export class Keyboard {
     }
 
     private _updateDownKeys() {
-        this._downKeys.addAll(this._newPressedKeys);
+        Collection.addAll(this._downKeys, this._newPressedKeys);
         this._newPressedKeys.clear();
     }
 
     private _updateUpKeys() {
         this._upKeys.clear();
-        this._upKeys.addAll(this._keys);
-        this._upKeys.deleteAll(this._downKeys);
+        Collection.addAll(this._upKeys, this._keys);
+        Collection.removeAll(this._upKeys, this._downKeys);
     }
 
     private _updatePressedKeys() {
         this._pressedKeys.clear();
-        this._pressedKeys.addAll(this._newPressedKeys);
-        this._pressedKeys.deleteAll(this._downKeys);
+        Collection.addAll(this._pressedKeys, this._newPressedKeys);
+        Collection.removeAll(this._pressedKeys, this._downKeys);
     }
 
     private _updateReleasedKeys() {
         this._releasedKeys.clear();
-        this._releasedKeys.addAll(this._newReleasedKeys);
+        Collection.addAll(this._releasedKeys, this._newReleasedKeys);
         this._newReleasedKeys.clear();
-        this._downKeys.deleteAll(this._releasedKeys);
+        Collection.removeAll(this._downKeys, this._releasedKeys);
     }
 
     private _reset() {
