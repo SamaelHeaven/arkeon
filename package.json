@@ -2,7 +2,7 @@
   "name": "arkeon",
   "main": "build/index.js",
   "types": "types/index.d.ts",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "type": "module",
   "scripts": {
     "build": "rollup -c",
