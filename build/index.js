@@ -106,7 +106,7 @@ class Time {
         return instance._delta <= 0 ? 0 : 1 / instance._delta;
     }
     static get _instance() {
-        return this._instanceRef ?? (this._instanceRef = new this());
+        return (this._instanceRef ?? (this._instanceRef = new this()));
     }
     _update() {
         const ticks = performance.now() - this._startTime;
@@ -160,7 +160,7 @@ class Game {
         this._instance._launch(options);
     }
     static get _instance() {
-        return this._instanceRef ?? (this._instanceRef = new this());
+        return (this._instanceRef ?? (this._instanceRef = new this()));
     }
     static _ensureNotLaunched() {
         if (this._launched) {
@@ -228,7 +228,5 @@ class Scene {
         return this.start();
     }
 }
-
-console.log("Test");
 
 export { Duration, Game, Scene, Time };
