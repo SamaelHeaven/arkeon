@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "rollup -c",
-    "format": "prettier --write \"**/*.{js,ts,json}\"",
+    "format": "prettier --write \"**/*.{js,ts,json,yml}\"",
     "watch": "rollup -c -w"
   },
   "devDependencies": {
