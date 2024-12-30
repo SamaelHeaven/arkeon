@@ -73,12 +73,14 @@ export class Keyboard {
     }
 
     private _onKeyDown(event: KeyboardEvent) {
-        this._keys.includes(event.code as Key) && this._newPressedKeys.add(event.code as Key);
+        const key = event.code as Key;
+        this._keys.includes(key) && this._newPressedKeys.add(key);
         event.key.length === 1 && (this._newTypedString += event.key);
     }
 
     private _onKeyUp(event: KeyboardEvent) {
-        this._keys.includes(event.code as Key) && this._newReleasedKeys.add(event.code as Key);
+        const key = event.code as Key;
+        this._keys.includes(key) && this._newReleasedKeys.add(key);
     }
 
     private _updateTypedString() {
