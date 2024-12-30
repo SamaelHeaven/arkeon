@@ -6,11 +6,11 @@ export class Keyboard {
     private readonly _newPressedKeys = new Set<Key>();
     private readonly _newReleasedKeys = new Set<Key>();
     private readonly _keys = Object.values(Key);
+    private readonly _downKeys = new Set<Key>();
+    private readonly _upKeys = new Set<Key>();
+    private readonly _pressedKeys = new Set<Key>();
+    private readonly _releasedKeys = new Set<Key>();
     private _newTypedString = "";
-    private _downKeys = new Set<Key>();
-    private _upKeys = new Set<Key>();
-    private _pressedKeys = new Set<Key>();
-    private _releasedKeys = new Set<Key>();
     private _typedString = "";
 
     private constructor() {
@@ -40,20 +40,24 @@ export class Keyboard {
         return Keyboard._self._releasedKeys;
     }
 
-    public static isKeyDown(key: Key): boolean {
-        return this._self._downKeys.has(key);
+    public static isKeyDown(key: Key | keyof typeof Key): boolean {
+        const self = this._self;
+        return self._downKeys.has(self._keys.includes(key as Key) ? key : Key[key]);
     }
 
-    public static isKeyUp(key: Key): boolean {
-        return this._self._upKeys.has(key);
+    public static isKeyUp(key: Key | keyof typeof Key): boolean {
+        const self = this._self;
+        return self._upKeys.has(self._keys.includes(key as Key) ? key : Key[key]);
     }
 
-    public static isKeyPressed(key: Key): boolean {
-        return this._self._pressedKeys.has(key);
+    public static isKeyPressed(key: Key | keyof typeof Key): boolean {
+        const self = this._self;
+        return self._pressedKeys.has(self._keys.includes(key as Key) ? key : Key[key]);
     }
 
-    public static isKeyReleased(key: Key): boolean {
-        return this._self._releasedKeys.has(key);
+    public static isKeyReleased(key: Key | keyof typeof Key): boolean {
+        const self = this._self;
+        return self._releasedKeys.has(self._keys.includes(key as Key) ? key : Key[key]);
     }
 
     private static get _self() {

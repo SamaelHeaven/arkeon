@@ -5,18 +5,18 @@
   "version": "0.0.18",
   "type": "module",
   "scripts": {
-    "build": "rollup -c",
-    "format": "prettier --write \"**/*.{js,ts,json,yml}\"",
-    "watch": "rollup -c -w"
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "format": "prettier --write \"**/*.{js,ts,json,yml}\""
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^28.0.2",
-    "@rollup/plugin-node-resolve": "^16.0.0",
-    "del": "^8.0.0",
+    "clean-webpack-plugin": "^4.0.0",
     "prettier": "^3.4.2",
     "prettier-plugin-organize-imports": "^4.1.0",
-    "rollup": "^4.29.1",
-    "rollup-plugin-typescript2": "^0.36.0",
-    "typescript": "^5.7.2"
+    "ts-loader": "^9.5.1",
+    "tsconfig-paths-webpack-plugin": "^4.2.0",
+    "typescript": "^5.7.2",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1"
   }
 }

@@ -1,4 +1,4 @@
-import { Keyboard } from "../input";
+import { Keyboard, Mouse } from "../input";
 import { Time } from "../time";
 import { GameOptions } from "./game-options";
 import { Scene } from "./scene";
@@ -8,6 +8,7 @@ export class Game {
     private static _launched = false;
     private _time: Time = null!;
     private _keyboard: Keyboard = null!;
+    private _mouse: Mouse = null!;
     private _root: HTMLElement = null!;
     private _canvas: HTMLCanvasElement = null!;
     private _scene: Scene = null!;
@@ -82,6 +83,7 @@ export class Game {
         this._initializeRoot();
         this._time = Time["_self"];
         this._keyboard = Keyboard["_self"];
+        this._mouse = Mouse["_self"];
     }
 
     private _initializeCanvas() {
@@ -93,6 +95,7 @@ export class Game {
     private _initializeRoot() {
         this._root.appendChild(this._canvas);
         this._root.tabIndex = 0;
+        this._root.oncontextmenu = () => false;
         this._root.focus();
     }
 
@@ -104,6 +107,7 @@ export class Game {
         const scene = this._scene;
         this._time["_update"]();
         this._keyboard["_update"]();
+        this._mouse["_update"]();
         scene.update();
         return this._frame().then(() => {
             if (this._scene === scene) {

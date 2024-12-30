@@ -5,6 +5,7 @@ export declare class Game {
     private static _launched;
     private _time;
     private _keyboard;
+    private _mouse;
     private _root;
     private _canvas;
     private _scene;

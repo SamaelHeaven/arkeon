@@ -10,8 +10,7 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "noImplicitAny": false,
-    "noFallthroughCasesInSwitch": true,
-    "noEmit": true
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["src"]
 }
