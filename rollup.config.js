@@ -12,10 +12,7 @@ export default {
     },
     plugins: [
         {
-            name: "clean-folders",
-            buildStart() {
-                deleteSync(["build", "types"]);
-            }
+            buildStart: () => deleteSync(["build", "types"])
         },
         resolve(),
         commonjs(),
