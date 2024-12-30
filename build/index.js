@@ -220,11 +220,13 @@ class Keyboard {
         this._updateUpKeys();
     }
     _onKeyDown(event) {
-        this._keys.includes(event.code) && this._newPressedKeys.add(event.code);
+        const key = event.code;
+        this._keys.includes(key) && this._newPressedKeys.add(key);
         event.key.length === 1 && (this._newTypedString += event.key);
     }
     _onKeyUp(event) {
-        this._keys.includes(event.code) && this._newReleasedKeys.add(event.code);
+        const key = event.code;
+        this._keys.includes(key) && this._newReleasedKeys.add(key);
     }
     _updateTypedString() {
         this._typedString = this._newTypedString;
@@ -261,6 +263,13 @@ class Keyboard {
     }
 }
 Keyboard._instance = null;
+
+var MouseButton;
+(function (MouseButton) {
+    MouseButton[MouseButton["Left"] = 0] = "Left";
+    MouseButton[MouseButton["Middle"] = 1] = "Middle";
+    MouseButton[MouseButton["Right"] = 2] = "Right";
+})(MouseButton || (MouseButton = {}));
 
 var DurationUnit;
 (function (DurationUnit) {
@@ -504,4 +513,4 @@ class Scene {
     }
 }
 
-export { Collection, Duration, DurationUnit, Game, Key, Keyboard, Scene, Time };
+export { Collection, Duration, DurationUnit, Game, Key, Keyboard, MouseButton, Scene, Time };
