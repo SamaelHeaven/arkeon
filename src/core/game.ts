@@ -107,15 +107,14 @@ export class Game {
         this._keyboard["_update"]();
         this._mouse["_update"]();
         scene.update();
-        return this._frame().then(() => {
-            if (this._scene === scene) {
-                return;
-            }
+        if (this._scene !== scene) {
             scene.stop();
             return this._scene["_initialize"]().then(() => {
                 this._time["_restart"]();
+                return this._frame();
             });
-        });
+        }
+        return this._frame();
     }
 
     private _frame() {
