@@ -1,5 +1,5 @@
 import { Collection, Game } from "../core";
-import { Key, KeyOfKey } from "./key";
+import { Key, KeyString } from "./key";
 
 export class Keyboard {
     private static _instance: Keyboard | null = null;
@@ -40,19 +40,19 @@ export class Keyboard {
         return this._self._releasedKeys;
     }
 
-    public static isKeyDown(key: KeyOfKey): boolean {
+    public static isKeyDown(key: KeyString): boolean {
         return this._self._downKeys.has(Key[key]);
     }
 
-    public static isKeyUp(key: KeyOfKey): boolean {
+    public static isKeyUp(key: KeyString): boolean {
         return this._self._upKeys.has(Key[key]);
     }
 
-    public static isKeyPressed(key: KeyOfKey): boolean {
+    public static isKeyPressed(key: KeyString): boolean {
         return this._self._pressedKeys.has(Key[key]);
     }
 
-    public static isKeyReleased(key: KeyOfKey): boolean {
+    public static isKeyReleased(key: KeyString): boolean {
         return this._self._releasedKeys.has(Key[key]);
     }
 

@@ -125,4 +125,4 @@ export enum Key {
     WakeUp = "WakeUp"
 }
 
-export type KeyOfKey = keyof typeof Key;
+export type KeyString = keyof typeof Key;

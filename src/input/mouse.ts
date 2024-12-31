@@ -1,5 +1,5 @@
 import { Collection, Game } from "../core";
-import { KeyOfMouseButton, MouseButton } from "./mouse-button";
+import { MouseButton, MouseButtonString } from "./mouse-button";
 
 export class Mouse {
     private static _instance: Mouse | null = null;
@@ -34,19 +34,19 @@ export class Mouse {
         return this._self._releasedButtons;
     }
 
-    public static isButtonDown(button: KeyOfMouseButton): boolean {
+    public static isButtonDown(button: MouseButtonString): boolean {
         return this._self._downButtons.has(MouseButton[button]);
     }
 
-    public static isButtonUp(button: KeyOfMouseButton): boolean {
+    public static isButtonUp(button: MouseButtonString): boolean {
         return this._self._upButtons.has(MouseButton[button]);
     }
 
-    public static isButtonPressed(button: KeyOfMouseButton): boolean {
+    public static isButtonPressed(button: MouseButtonString): boolean {
         return this._self._pressedButtons.has(MouseButton[button]);
     }
 
-    public static isButtonReleased(button: KeyOfMouseButton): boolean {
+    public static isButtonReleased(button: MouseButtonString): boolean {
         return this._self._releasedButtons.has(MouseButton[button]);
     }
 

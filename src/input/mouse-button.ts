@@ -4,4 +4,4 @@ export enum MouseButton {
     Right = 2
 }
 
-export type KeyOfMouseButton = keyof typeof MouseButton;
+export type MouseButtonString = keyof typeof MouseButton;
