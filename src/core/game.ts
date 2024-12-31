@@ -38,8 +38,16 @@ export class Game {
         return this._self._width;
     }
 
+    public static get screenWidth() {
+        return this._self._canvas.width;
+    }
+
     public static get height() {
         return this._self._height;
+    }
+
+    public static get screenHeight() {
+        return this._self._canvas.height;
     }
 
     public static launch(options: GameOptions) {
@@ -81,8 +89,9 @@ export class Game {
     }
 
     private _initializeCanvas() {
-        this._canvas.width = this._width;
-        this._canvas.height = this._height;
+        this._resizeCanvas();
+        const resizeObserver = new ResizeObserver(() => this._resizeCanvas());
+        resizeObserver.observe(this._canvas.parentElement!);
         this._canvas.tabIndex = 0;
         this._canvas.oncontextmenu = () => false;
         this._canvas.focus();
@@ -111,5 +120,11 @@ export class Game {
 
     private _frame() {
         return new Promise(resolve => requestAnimationFrame(() => this._update().then(resolve)));
+    }
+
+    private _resizeCanvas() {
+        const { width, height } = this._canvas.parentElement!.getBoundingClientRect();
+        this._canvas.width = width;
+        this._canvas.height = height;
     }
 }

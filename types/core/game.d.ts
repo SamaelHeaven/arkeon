@@ -16,7 +16,9 @@ export declare class Game {
     static get scene(): Scene;
     static set scene(scene: Scene);
     static get width(): number;
+    static get screenWidth(): number;
     static get height(): number;
+    static get screenHeight(): number;
     static launch(options: GameOptions): void;
     private static get _self();
     private static _ensureNotLaunched;
@@ -27,4 +29,5 @@ export declare class Game {
     private _start;
     private _update;
     private _frame;
+    private _resizeCanvas;
 }
