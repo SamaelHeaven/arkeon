@@ -28,6 +28,7 @@ export declare class Game {
     private _initializeCanvas;
     private _start;
     private _update;
+    private _nextFrame;
     private _frame;
     private _resizeCanvas;
 }
