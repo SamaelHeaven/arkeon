@@ -1,6 +1,6 @@
 import { Scene } from "./scene";
 export type GameOptions = {
-    readonly rootEl: HTMLElement;
+    readonly canvas: HTMLCanvasElement;
     readonly scene: Scene;
     readonly width?: number;
     readonly height?: number;

@@ -15,9 +15,9 @@ export class Keyboard {
 
     private constructor() {
         Game["_ensureLaunched"]();
-        const root = Game.root;
-        root.addEventListener("keydown", e => this._onKeyDown(e));
-        root.addEventListener("keyup", e => this._onKeyUp(e));
+        const canvas = Game.canvas;
+        canvas.addEventListener("keydown", e => this._onKeyDown(e));
+        canvas.addEventListener("keyup", e => this._onKeyUp(e));
     }
 
     public static get typedString(): string {

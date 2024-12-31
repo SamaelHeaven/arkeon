@@ -13,9 +13,9 @@ export class Mouse {
 
     private constructor() {
         Game["_ensureLaunched"]();
-        const root = Game.root;
-        root.addEventListener("mousedown", e => this._onMouseDown(e));
-        root.addEventListener("mouseup", e => this._onMouseUp(e));
+        const canvas = Game.canvas;
+        canvas.addEventListener("mousedown", e => this._onMouseDown(e));
+        canvas.addEventListener("mouseup", e => this._onMouseUp(e));
     }
 
     public static get downButtons(): ReadonlySet<MouseButton> {

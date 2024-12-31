@@ -9,7 +9,6 @@ export class Game {
     private _time: Time = null!;
     private _keyboard: Keyboard = null!;
     private _mouse: Mouse = null!;
-    private _root: HTMLElement = null!;
     private _canvas: HTMLCanvasElement = null!;
     private _scene: Scene = null!;
     private _width: number = 0;
@@ -20,11 +19,7 @@ export class Game {
     }
 
     public static get focused(): boolean {
-        return document.activeElement === this._self._root;
-    }
-
-    public static get root() {
-        return this._self._root;
+        return document.activeElement === this._self._canvas;
     }
 
     public static get canvas() {
@@ -71,7 +66,7 @@ export class Game {
 
     private _launch(options: GameOptions) {
         this._scene = options.scene;
-        this._root = options.rootEl;
+        this._canvas = options.canvas;
         this._width = options.width ?? 800;
         this._height = options.height ?? 600;
         this._initialize();
@@ -80,23 +75,17 @@ export class Game {
 
     private _initialize() {
         this._initializeCanvas();
-        this._initializeRoot();
         this._time = Time["_self"];
         this._keyboard = Keyboard["_self"];
         this._mouse = Mouse["_self"];
     }
 
     private _initializeCanvas() {
-        this._canvas = document.createElement("canvas");
         this._canvas.width = this._width;
         this._canvas.height = this._height;
-    }
-
-    private _initializeRoot() {
-        this._root.appendChild(this._canvas);
-        this._root.tabIndex = 0;
-        this._root.oncontextmenu = () => false;
-        this._root.focus();
+        this._canvas.tabIndex = 0;
+        this._canvas.oncontextmenu = () => false;
+        this._canvas.focus();
     }
 
     private _start() {

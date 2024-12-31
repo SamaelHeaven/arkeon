@@ -6,14 +6,12 @@ export declare class Game {
     private _time;
     private _keyboard;
     private _mouse;
-    private _root;
     private _canvas;
     private _scene;
     private _width;
     private _height;
     private constructor();
     static get focused(): boolean;
-    static get root(): HTMLElement;
     static get canvas(): HTMLCanvasElement;
     static get scene(): Scene;
     static set scene(scene: Scene);
@@ -26,7 +24,6 @@ export declare class Game {
     private _launch;
     private _initialize;
     private _initializeCanvas;
-    private _initializeRoot;
     private _start;
     private _update;
     private _frame;
