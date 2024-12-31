@@ -1,5 +1,5 @@
 import { Collection, Game } from "../core";
-import { Key } from "./key";
+import { Key, KeyOfKey } from "./key";
 
 export class Keyboard {
     private static _instance: Keyboard | null = null;
@@ -40,24 +40,20 @@ export class Keyboard {
         return Keyboard._self._releasedKeys;
     }
 
-    public static isKeyDown(key: Key | keyof typeof Key): boolean {
-        const self = this._self;
-        return self._downKeys.has(self._keys.includes(key as Key) ? key : Key[key]);
+    public static isKeyDown(key: KeyOfKey): boolean {
+        return this._self._downKeys.has(Key[key]);
     }
 
-    public static isKeyUp(key: Key | keyof typeof Key): boolean {
-        const self = this._self;
-        return self._upKeys.has(self._keys.includes(key as Key) ? key : Key[key]);
+    public static isKeyUp(key: KeyOfKey): boolean {
+        return this._self._upKeys.has(Key[key]);
     }
 
-    public static isKeyPressed(key: Key | keyof typeof Key): boolean {
-        const self = this._self;
-        return self._pressedKeys.has(self._keys.includes(key as Key) ? key : Key[key]);
+    public static isKeyPressed(key: KeyOfKey): boolean {
+        return this._self._pressedKeys.has(Key[key]);
     }
 
-    public static isKeyReleased(key: Key | keyof typeof Key): boolean {
-        const self = this._self;
-        return self._releasedKeys.has(self._keys.includes(key as Key) ? key : Key[key]);
+    public static isKeyReleased(key: KeyOfKey): boolean {
+        return this._self._releasedKeys.has(Key[key]);
     }
 
     private static get _self() {

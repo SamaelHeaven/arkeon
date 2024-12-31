@@ -7,3 +7,4 @@ export declare enum DurationUnit {
     Hours = 3600000000000,
     Days = 86400000000000
 }
+export type KeyOfDurationUnit = keyof typeof DurationUnit;

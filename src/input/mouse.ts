@@ -1,5 +1,5 @@
 import { Collection, Game } from "../core";
-import { MouseButton } from "./mouse-button";
+import { KeyOfMouseButton, MouseButton } from "./mouse-button";
 
 export class Mouse {
     private static _instance: Mouse | null = null;
@@ -34,26 +34,20 @@ export class Mouse {
         return this._self._releasedButtons;
     }
 
-    public static isButtonDown(button: MouseButton | keyof typeof MouseButton): boolean {
-        return this._self._downButtons.has(
-            typeof button === "string" ? MouseButton[button] : button
-        );
+    public static isButtonDown(button: KeyOfMouseButton): boolean {
+        return this._self._downButtons.has(MouseButton[button]);
     }
 
-    public static isButtonUp(button: MouseButton | keyof typeof MouseButton): boolean {
-        return this._self._upButtons.has(typeof button === "string" ? MouseButton[button] : button);
+    public static isButtonUp(button: KeyOfMouseButton): boolean {
+        return this._self._upButtons.has(MouseButton[button]);
     }
 
-    public static isButtonPressed(button: MouseButton | keyof typeof MouseButton): boolean {
-        return this._self._pressedButtons.has(
-            typeof button === "string" ? MouseButton[button] : button
-        );
+    public static isButtonPressed(button: KeyOfMouseButton): boolean {
+        return this._self._pressedButtons.has(MouseButton[button]);
     }
 
-    public static isButtonReleased(button: MouseButton | keyof typeof MouseButton): boolean {
-        return this._self._releasedButtons.has(
-            typeof button === "string" ? MouseButton[button] : button
-        );
+    public static isButtonReleased(button: KeyOfMouseButton): boolean {
+        return this._self._releasedButtons.has(MouseButton[button]);
     }
 
     private static get _self() {

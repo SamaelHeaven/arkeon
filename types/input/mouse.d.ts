@@ -1,4 +1,4 @@
-import { MouseButton } from "./mouse-button";
+import { KeyOfMouseButton, MouseButton } from "./mouse-button";
 export declare class Mouse {
     private static _instance;
     private readonly _newPressedButtons;
@@ -13,10 +13,10 @@ export declare class Mouse {
     static get upButtons(): ReadonlySet<MouseButton>;
     static get pressedButtons(): ReadonlySet<MouseButton>;
     static get releasedButtons(): ReadonlySet<MouseButton>;
-    static isButtonDown(button: MouseButton | keyof typeof MouseButton): boolean;
-    static isButtonUp(button: MouseButton | keyof typeof MouseButton): boolean;
-    static isButtonPressed(button: MouseButton | keyof typeof MouseButton): boolean;
-    static isButtonReleased(button: MouseButton | keyof typeof MouseButton): boolean;
+    static isButtonDown(button: KeyOfMouseButton): boolean;
+    static isButtonUp(button: KeyOfMouseButton): boolean;
+    static isButtonPressed(button: KeyOfMouseButton): boolean;
+    static isButtonReleased(button: KeyOfMouseButton): boolean;
     private static get _self();
     private _update;
     private _onMouseDown;

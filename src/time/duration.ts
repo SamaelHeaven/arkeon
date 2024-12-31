@@ -1,78 +1,78 @@
-import { DurationUnit } from "./duration-unit";
+import { DurationUnit, KeyOfDurationUnit } from "./duration-unit";
 
 export class Duration {
     private readonly _nanoseconds: number;
 
-    constructor(value: number, unit: DurationUnit) {
-        this._nanoseconds = value * unit;
+    constructor(value: number, unit: KeyOfDurationUnit = "Nanoseconds") {
+        this._nanoseconds = value * DurationUnit[unit];
     }
 
     public static fromNanoseconds(value: number): Duration {
-        return new Duration(value, DurationUnit.Nanoseconds);
+        return new Duration(value, "Nanoseconds");
     }
 
     public static fromMicroseconds(value: number): Duration {
-        return new Duration(value, DurationUnit.Microseconds);
+        return new Duration(value, "Microseconds");
     }
 
     public static fromMilliseconds(value: number): Duration {
-        return new Duration(value, DurationUnit.Milliseconds);
+        return new Duration(value, "Milliseconds");
     }
 
     public static fromSeconds(value: number): Duration {
-        return new Duration(value, DurationUnit.Seconds);
+        return new Duration(value, "Seconds");
     }
 
     public static fromMinutes(value: number): Duration {
-        return new Duration(value, DurationUnit.Minutes);
+        return new Duration(value, "Minutes");
     }
 
     public static fromHours(value: number): Duration {
-        return new Duration(value, DurationUnit.Hours);
+        return new Duration(value, "Hours");
     }
 
     public static fromDays(value: number): Duration {
-        return new Duration(value, DurationUnit.Days);
+        return new Duration(value, "Days");
     }
 
-    public to(unit: DurationUnit): number {
-        return this._nanoseconds / unit;
+    public to(unit: KeyOfDurationUnit): number {
+        return this._nanoseconds / DurationUnit[unit];
     }
 
     public get nanoseconds(): number {
-        return this.to(DurationUnit.Nanoseconds);
+        return this.to("Nanoseconds");
     }
 
     public get microseconds(): number {
-        return this.to(DurationUnit.Microseconds);
+        return this.to("Microseconds");
     }
 
     public get milliseconds(): number {
-        return this.to(DurationUnit.Milliseconds);
+        return this.to("Milliseconds");
     }
 
     public get seconds(): number {
-        return this.to(DurationUnit.Seconds);
+        return this.to("Seconds");
     }
 
     public get minutes(): number {
-        return this.to(DurationUnit.Minutes);
+        return this.to("Minutes");
     }
 
     public get hours(): number {
-        return this.to(DurationUnit.Hours);
+        return this.to("Hours");
     }
 
     public get days(): number {
-        return this.to(DurationUnit.Days);
+        return this.to("Days");
     }
 
     public add(other: Duration): Duration {
-        return new Duration(this._nanoseconds + other._nanoseconds, DurationUnit.Nanoseconds);
+        return new Duration(this._nanoseconds + other._nanoseconds);
     }
 
     public subtract(other: Duration): Duration {
-        return new Duration(this._nanoseconds - other._nanoseconds, DurationUnit.Nanoseconds);
+        return new Duration(this._nanoseconds - other._nanoseconds);
     }
 
     public toString(): string {

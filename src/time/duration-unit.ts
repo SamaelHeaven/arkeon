@@ -7,3 +7,5 @@ export enum DurationUnit {
     Hours = 60 * 60 * 1e9,
     Days = 24 * 60 * 60 * 1e9
 }
+
+export type KeyOfDurationUnit = keyof typeof DurationUnit;

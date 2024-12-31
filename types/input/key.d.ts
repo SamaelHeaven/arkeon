@@ -124,3 +124,4 @@ export declare enum Key {
     OSLeft = "OSLeft",
     WakeUp = "WakeUp"
 }
+export type KeyOfKey = keyof typeof Key;
