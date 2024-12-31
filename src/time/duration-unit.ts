@@ -8,4 +8,4 @@ export enum DurationUnit {
     Days = 24 * 60 * 60 * 1e9
 }
 
-export type KeyOfDurationUnit = keyof typeof DurationUnit;
+export type DurationUnitString = keyof typeof DurationUnit;

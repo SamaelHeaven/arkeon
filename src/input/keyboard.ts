@@ -89,27 +89,27 @@ export class Keyboard {
     }
 
     private _updateDownKeys() {
-        Collection.addAll(this._downKeys, this._newPressedKeys);
+        Collection.Set.addAll(this._downKeys, this._newPressedKeys);
         this._newPressedKeys.clear();
     }
 
     private _updateUpKeys() {
         this._upKeys.clear();
-        Collection.addAll(this._upKeys, this._keys);
-        Collection.removeAll(this._upKeys, this._downKeys);
+        Collection.Set.addAll(this._upKeys, this._keys);
+        Collection.Set.removeAll(this._upKeys, this._downKeys);
     }
 
     private _updatePressedKeys() {
         this._pressedKeys.clear();
-        Collection.addAll(this._pressedKeys, this._newPressedKeys);
-        Collection.removeAll(this._pressedKeys, this._downKeys);
+        Collection.Set.addAll(this._pressedKeys, this._newPressedKeys);
+        Collection.Set.removeAll(this._pressedKeys, this._downKeys);
     }
 
     private _updateReleasedKeys() {
         this._releasedKeys.clear();
-        Collection.addAll(this._releasedKeys, this._newReleasedKeys);
+        Collection.Set.addAll(this._releasedKeys, this._newReleasedKeys);
         this._newReleasedKeys.clear();
-        Collection.removeAll(this._downKeys, this._releasedKeys);
+        Collection.Set.removeAll(this._downKeys, this._releasedKeys);
     }
 
     private _reset() {

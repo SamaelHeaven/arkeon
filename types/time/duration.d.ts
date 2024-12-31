@@ -1,7 +1,7 @@
-import { KeyOfDurationUnit } from "./duration-unit";
+import { DurationUnitString } from "./duration-unit";
 export declare class Duration {
     private readonly _nanoseconds;
-    constructor(value: number, unit?: KeyOfDurationUnit);
+    constructor(value: number, unit?: DurationUnitString);
     static fromNanoseconds(value: number): Duration;
     static fromMicroseconds(value: number): Duration;
     static fromMilliseconds(value: number): Duration;
@@ -9,7 +9,7 @@ export declare class Duration {
     static fromMinutes(value: number): Duration;
     static fromHours(value: number): Duration;
     static fromDays(value: number): Duration;
-    to(unit: KeyOfDurationUnit): number;
+    to(unit: DurationUnitString): number;
     get nanoseconds(): number;
     get microseconds(): number;
     get milliseconds(): number;

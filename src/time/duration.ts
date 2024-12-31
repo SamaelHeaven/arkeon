@@ -1,9 +1,9 @@
-import { DurationUnit, KeyOfDurationUnit } from "./duration-unit";
+import { DurationUnit, DurationUnitString } from "./duration-unit";
 
 export class Duration {
     private readonly _nanoseconds: number;
 
-    constructor(value: number, unit: KeyOfDurationUnit = "Nanoseconds") {
+    constructor(value: number, unit: DurationUnitString = "Nanoseconds") {
         this._nanoseconds = value * DurationUnit[unit];
     }
 
@@ -35,7 +35,7 @@ export class Duration {
         return new Duration(value, "Days");
     }
 
-    public to(unit: KeyOfDurationUnit): number {
+    public to(unit: DurationUnitString): number {
         return this._nanoseconds / DurationUnit[unit];
     }
 

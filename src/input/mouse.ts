@@ -76,27 +76,27 @@ export class Mouse {
     }
 
     private _updateDownButtons() {
-        Collection.addAll(this._downButtons, this._newPressedButtons);
+        Collection.Set.addAll(this._downButtons, this._newPressedButtons);
         this._newPressedButtons.clear();
     }
 
     private _updateUpButtons() {
         this._upButtons.clear();
-        Collection.addAll(this._upButtons, this._buttons);
-        Collection.removeAll(this._upButtons, this._downButtons);
+        Collection.Set.addAll(this._upButtons, this._buttons);
+        Collection.Set.removeAll(this._upButtons, this._downButtons);
     }
 
     private _updatePressedButtons() {
         this._pressedButtons.clear();
-        Collection.addAll(this._pressedButtons, this._newPressedButtons);
-        Collection.removeAll(this._pressedButtons, this._downButtons);
+        Collection.Set.addAll(this._pressedButtons, this._newPressedButtons);
+        Collection.Set.removeAll(this._pressedButtons, this._downButtons);
     }
 
     private _updateReleasedButtons() {
         this._releasedButtons.clear();
-        Collection.addAll(this._releasedButtons, this._newReleasedButtons);
+        Collection.Set.addAll(this._releasedButtons, this._newReleasedButtons);
         this._newReleasedButtons.clear();
-        Collection.removeAll(this._downButtons, this._releasedButtons);
+        Collection.Set.removeAll(this._downButtons, this._releasedButtons);
     }
 
     private _reset() {
