@@ -124,4 +124,4 @@ export declare enum Key {
     OSLeft = "OSLeft",
     WakeUp = "WakeUp"
 }
-export type KeyOfKey = keyof typeof Key;
+export type KeyString = keyof typeof Key;

@@ -1,4 +1,4 @@
-import { Key, KeyOfKey } from "./key";
+import { Key, KeyString } from "./key";
 export declare class Keyboard {
     private static _instance;
     private readonly _newPressedKeys;
@@ -16,10 +16,10 @@ export declare class Keyboard {
     static get upKeys(): ReadonlySet<Key>;
     static get pressedKeys(): ReadonlySet<Key>;
     static get releasedKeys(): ReadonlySet<Key>;
-    static isKeyDown(key: KeyOfKey): boolean;
-    static isKeyUp(key: KeyOfKey): boolean;
-    static isKeyPressed(key: KeyOfKey): boolean;
-    static isKeyReleased(key: KeyOfKey): boolean;
+    static isKeyDown(key: KeyString): boolean;
+    static isKeyUp(key: KeyString): boolean;
+    static isKeyPressed(key: KeyString): boolean;
+    static isKeyReleased(key: KeyString): boolean;
     private static get _self();
     private _update;
     private _onKeyDown;
