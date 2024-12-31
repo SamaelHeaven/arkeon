@@ -21,23 +21,23 @@ export class Keyboard {
     }
 
     public static get typedString(): string {
-        return Keyboard._self._typedString;
+        return this._self._typedString;
     }
 
     public static get downKeys(): ReadonlySet<Key> {
-        return Keyboard._self._downKeys;
+        return this._self._downKeys;
     }
 
     public static get upKeys(): ReadonlySet<Key> {
-        return Keyboard._self._upKeys;
+        return this._self._upKeys;
     }
 
     public static get pressedKeys(): ReadonlySet<Key> {
-        return Keyboard._self._pressedKeys;
+        return this._self._pressedKeys;
     }
 
     public static get releasedKeys(): ReadonlySet<Key> {
-        return Keyboard._self._releasedKeys;
+        return this._self._releasedKeys;
     }
 
     public static isKeyDown(key: KeyOfKey): boolean {
@@ -57,7 +57,7 @@ export class Keyboard {
     }
 
     private static get _self() {
-        return (this._instance ??= new Keyboard());
+        return (this._instance ??= new this());
     }
 
     private _update() {

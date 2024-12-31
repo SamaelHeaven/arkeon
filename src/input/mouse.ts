@@ -51,7 +51,7 @@ export class Mouse {
     }
 
     private static get _self() {
-        return (this._instance ??= new Mouse());
+        return (this._instance ??= new this());
     }
 
     private _update() {
