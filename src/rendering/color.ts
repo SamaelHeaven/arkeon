@@ -11,7 +11,7 @@ type HslColor = `hsl(${number}, ${number}%, ${number}%)`;
 
 type HslaColor = `hsla(${number}, ${number}%, ${number}%, ${number})`;
 
-export type ColorString = HexColor | RgbColor | RgbaColor | HslColor | HslaColor;
+export type ColorString = string & (HexColor | RgbColor | RgbaColor | HslColor | HslaColor);
 
 export class Color {
     public static BLACK: ColorString = "rgb(0, 0, 0)";

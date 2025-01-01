@@ -1,5 +1,6 @@
-import { Paint } from "./paint";
+import { Paint, PaintUtilities } from "./paint";
 import { RenderingContext } from "./rendering-context";
+import nativePaint = PaintUtilities.nativePaint;
 
 export class Graphics {
     private readonly _context: RenderingContext;
@@ -17,7 +18,7 @@ export class Graphics {
     }
 
     public clear(paint: Paint) {
-        this._context.fillStyle = paint;
+        this._context.fillStyle = nativePaint(paint);
         this._context.fillRect(0, 0, this.width, this.height);
     }
 }

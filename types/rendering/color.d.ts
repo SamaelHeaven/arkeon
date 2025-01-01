@@ -3,7 +3,7 @@ type RgbColor = `rgb(${number}, ${number}, ${number})`;
 type RgbaColor = `rgba(${number}, ${number}, ${number}, ${number})`;
 type HslColor = `hsl(${number}, ${number}%, ${number}%)`;
 type HslaColor = `hsla(${number}, ${number}%, ${number}%, ${number})`;
-export type ColorString = HexColor | RgbColor | RgbaColor | HslColor | HslaColor;
+export type ColorString = string & (HexColor | RgbColor | RgbaColor | HslColor | HslaColor);
 export declare class Color {
     static BLACK: ColorString;
     static WHITE: ColorString;

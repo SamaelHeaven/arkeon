@@ -1,5 +1,5 @@
 import clamp = MathUtilities.clamp;
-import { MathUtilities } from "./math-utilities";
+import { MathUtilities } from "./math";
 
 export class Vector2 {
     public readonly x: number;
