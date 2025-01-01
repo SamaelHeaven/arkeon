@@ -1,18 +1,21 @@
 import { Keyboard, Mouse } from "../input";
+import { Vector2 } from "../math/";
+import { Renderer } from "../rendering";
 import { Time } from "../time";
 import { GameOptions } from "./game-options";
 import { Scene } from "./scene";
 
 export class Game {
     private static _instance: Game | null = null;
-    private static _launched = false;
+    private static _launched: boolean = false;
     private _time: Time = null!;
     private _keyboard: Keyboard = null!;
     private _mouse: Mouse = null!;
+    private _renderer: Renderer = null!;
     private _canvas: HTMLCanvasElement = null!;
     private _scene: Scene = null!;
-    private _width: number = 0;
-    private _height: number = 0;
+    private _size: Vector2 = null!;
+    private _shouldResize: boolean = false;
 
     private constructor() {
         Game._ensureLaunched();
@@ -22,11 +25,11 @@ export class Game {
         return document.activeElement === this._self._canvas;
     }
 
-    public static get canvas() {
+    public static get canvas(): HTMLCanvasElement {
         return this._self._canvas;
     }
 
-    public static get scene() {
+    public static get scene(): Scene {
         return this._self._scene;
     }
 
@@ -34,20 +37,34 @@ export class Game {
         this._self._scene = scene;
     }
 
-    public static get width() {
-        return this._self._width;
+    public static get width(): number {
+        return this._self._size.x;
     }
 
-    public static get screenWidth() {
+    public static get height(): number {
+        return this._self._size.y;
+    }
+
+    public static get size(): Vector2 {
+        return this._self._size;
+    }
+
+    public static get screenWidth(): number {
         return this._self._canvas.width;
     }
 
-    public static get height() {
-        return this._self._height;
+    public static get screenHeight(): number {
+        return this._self._canvas.height;
     }
 
-    public static get screenHeight() {
-        return this._self._canvas.height;
+    public static get screenSize(): Vector2 {
+        const self = this._self;
+        return new Vector2(self._canvas.width, self._canvas.height);
+    }
+
+    public static get scaleFactor(): number {
+        const self = this._self;
+        return Math.min(self._canvas.width / self._size.x, self._canvas.height / self._size.y);
     }
 
     public static launch(options: GameOptions) {
@@ -75,8 +92,7 @@ export class Game {
     private _launch(options: GameOptions) {
         this._scene = options.scene;
         this._canvas = options.canvas;
-        this._width = options.width ?? 800;
-        this._height = options.height ?? 600;
+        this._size = new Vector2(options.width ?? 800, options.height ?? 600);
         this._initialize();
         this._start();
     }
@@ -86,11 +102,12 @@ export class Game {
         this._time = Time["_self"];
         this._keyboard = Keyboard["_self"];
         this._mouse = Mouse["_self"];
+        this._renderer = Renderer["_self"];
     }
 
     private _initializeCanvas() {
         this._resizeCanvas();
-        const resizeObserver = new ResizeObserver(() => this._resizeCanvas());
+        const resizeObserver = new ResizeObserver(() => (this._shouldResize = true));
         resizeObserver.observe(this._canvas.parentElement!);
         this._canvas.tabIndex = 0;
         this._canvas.oncontextmenu = () => false;
@@ -107,6 +124,8 @@ export class Game {
         this._keyboard["_update"]();
         this._mouse["_update"]();
         scene.update();
+        this._handleResizing();
+        this._renderer["_update"]();
         return this._nextFrame(scene);
     }
 
@@ -123,6 +142,13 @@ export class Game {
 
     private _frame() {
         return new Promise(resolve => requestAnimationFrame(() => this._update().then(resolve)));
+    }
+
+    private _handleResizing() {
+        if (this._shouldResize) {
+            this._shouldResize = false;
+            this._resizeCanvas();
+        }
     }
 
     private _resizeCanvas() {

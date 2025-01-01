@@ -1,3 +1,4 @@
+import { Vector2 } from "../math/";
 import { GameOptions } from "./game-options";
 import { Scene } from "./scene";
 export declare class Game {
@@ -6,19 +7,23 @@ export declare class Game {
     private _time;
     private _keyboard;
     private _mouse;
+    private _renderer;
     private _canvas;
     private _scene;
-    private _width;
-    private _height;
+    private _size;
+    private _shouldResize;
     private constructor();
     static get focused(): boolean;
     static get canvas(): HTMLCanvasElement;
     static get scene(): Scene;
     static set scene(scene: Scene);
     static get width(): number;
-    static get screenWidth(): number;
     static get height(): number;
+    static get size(): Vector2;
+    static get screenWidth(): number;
     static get screenHeight(): number;
+    static get screenSize(): Vector2;
+    static get scaleFactor(): number;
     static launch(options: GameOptions): void;
     private static get _self();
     private static _ensureNotLaunched;
@@ -30,5 +35,6 @@ export declare class Game {
     private _update;
     private _nextFrame;
     private _frame;
+    private _handleResizing;
     private _resizeCanvas;
 }

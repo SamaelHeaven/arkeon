@@ -1,0 +1,33 @@
+export type Vector2Value = Vector2 | number | [number, number];
+export declare class Vector2 {
+    readonly x: number;
+    readonly y: number;
+    static ZERO: Vector2;
+    static UP: Vector2;
+    static DOWN: Vector2;
+    static LEFT: Vector2;
+    static RIGHT: Vector2;
+    constructor(a?: number, b?: number);
+    static extractValue(value: Vector2Value): Vector2;
+    private static _extractArray;
+    plus(v: Vector2Value): Vector2;
+    minus(v: Vector2Value): Vector2;
+    times(v: Vector2Value): Vector2;
+    div(v: Vector2Value): Vector2;
+    equals(v: Vector2Value): boolean;
+    clamp(min: Vector2Value, max: Vector2Value): Vector2;
+    clampX(min: number, max: number): Vector2;
+    clampY(min: number, max: number): Vector2;
+    distanceTo(v: Vector2): number;
+    dot(v: Vector2): number;
+    cross(v: Vector2): number;
+    rotate(rotation: number, point: Vector2): Vector2;
+    angleBetween(v: Vector2): number;
+    reflect(v: Vector2): Vector2;
+    lerp(end: Vector2, t: number): Vector2;
+    slerp(end: Vector2, t: number): Vector2;
+    length(): number;
+    round(): Vector2;
+    abs(): Vector2;
+    normalize(): Vector2;
+}
