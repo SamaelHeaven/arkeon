@@ -2,7 +2,7 @@
   "name": "arkeon",
   "main": "build/index.js",
   "types": "types/index.d.ts",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "type": "module",
   "scripts": {
     "build": "webpack",
