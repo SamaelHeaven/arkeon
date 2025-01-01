@@ -71,17 +71,11 @@ export class Vector2 {
     }
 
     public clampX(min: number, max: number): Vector2 {
-        if (this.x < min) {
-            return new Vector2(min, this.y);
-        }
-        return this.x > max ? new Vector2(max, this.y) : this;
+        return new Vector2(clamp(this.x, min, max), this.y);
     }
 
     public clampY(min: number, max: number): Vector2 {
-        if (this.y < min) {
-            return new Vector2(this.x, min);
-        }
-        return this.y > max ? new Vector2(this.x, max) : this;
+        return new Vector2(this.x, clamp(this.y, min, max));
     }
 
     public distanceTo(v: Vector2): number {
