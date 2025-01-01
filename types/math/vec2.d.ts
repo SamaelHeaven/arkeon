@@ -1,0 +1,30 @@
+export declare class Vec2 {
+    readonly x: number;
+    readonly y: number;
+    static ZERO: Vec2;
+    static UP: Vec2;
+    static DOWN: Vec2;
+    static LEFT: Vec2;
+    static RIGHT: Vec2;
+    constructor(a?: number, b?: number);
+    plus(v: Vec2 | number): Vec2;
+    minus(v: Vec2 | number): Vec2;
+    times(v: Vec2 | number): Vec2;
+    div(v: Vec2 | number): Vec2;
+    equals(v: Vec2 | number): boolean;
+    clamp(min: Vec2 | number, max: Vec2 | number): Vec2;
+    clampX(min: number, max: number): Vec2;
+    clampY(min: number, max: number): Vec2;
+    distanceTo(v: Vec2): number;
+    dot(v: Vec2): number;
+    cross(v: Vec2): number;
+    rotate(rotation: number, point: Vec2): Vec2;
+    angleBetween(v: Vec2): number;
+    reflect(v: Vec2): Vec2;
+    lerp(end: Vec2, t: number): Vec2;
+    slerp(end: Vec2, t: number): Vec2;
+    length(): number;
+    round(): Vec2;
+    abs(): Vec2;
+    normalize(): Vec2;
+}

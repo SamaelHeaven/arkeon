@@ -1,4 +1,4 @@
-import { Vector2 } from "../math/";
+import { Vec2 } from "../math/";
 import { GameOptions } from "./game-options";
 import { Scene } from "./scene";
 export declare class Game {
@@ -19,10 +19,10 @@ export declare class Game {
     static set scene(scene: Scene);
     static get width(): number;
     static get height(): number;
-    static get size(): Vector2;
+    static get size(): Vec2;
     static get screenWidth(): number;
     static get screenHeight(): number;
-    static get screenSize(): Vector2;
+    static get screenSize(): Vec2;
     static get scaleFactor(): number;
     static launch(options: GameOptions): void;
     private static get _self();

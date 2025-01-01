@@ -1,2 +1,2 @@
 export * from "./math";
-export * from "./vector2";
+export * from "./vec2";
