@@ -14,16 +14,16 @@ type HslaColor = `hsla(${number}, ${number}%, ${number}%, ${number})`;
 export type ColorString = string & (HexColor | RgbColor | RgbaColor | HslColor | HslaColor);
 
 export class Color {
-    public static BLACK: ColorString = "rgb(0, 0, 0)";
-    public static WHITE: ColorString = "rgb(255, 255, 255)";
-    public static GRAY: ColorString = "rgb(127, 127, 127)";
-    public static RED: ColorString = "rgb(255, 0, 0)";
-    public static GREEN: ColorString = "rgb(0, 255, 0)";
-    public static BLUE: ColorString = "rgb(0, 0, 255)";
-    public static YELLOW: ColorString = "rgb(255, 255, 0)";
-    public static ORANGE: ColorString = "rgb(255, 165, 0)";
-    public static PURPLE: ColorString = "rgb(127, 0, 127)";
-    public static TRANSPARENT: ColorString = "rgba(0, 0, 0, 0)";
+    public static readonly BLACK: ColorString = "rgb(0, 0, 0)";
+    public static readonly WHITE: ColorString = "rgb(255, 255, 255)";
+    public static readonly GRAY: ColorString = "rgb(127, 127, 127)";
+    public static readonly RED: ColorString = "rgb(255, 0, 0)";
+    public static readonly GREEN: ColorString = "rgb(0, 255, 0)";
+    public static readonly BLUE: ColorString = "rgb(0, 0, 255)";
+    public static readonly YELLOW: ColorString = "rgb(255, 255, 0)";
+    public static readonly ORANGE: ColorString = "rgb(255, 165, 0)";
+    public static readonly PURPLE: ColorString = "rgb(127, 0, 127)";
+    public static readonly TRANSPARENT: ColorString = "rgba(0, 0, 0, 0)";
 
     public readonly red: number;
     public readonly green: number;

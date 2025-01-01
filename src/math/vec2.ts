@@ -5,11 +5,11 @@ export class Vec2 {
     public readonly x: number;
     public readonly y: number;
 
-    public static ZERO = new Vec2();
-    public static UP = new Vec2(0, -1);
-    public static DOWN = new Vec2(0, 1);
-    public static LEFT = new Vec2(-1, 0);
-    public static RIGHT = new Vec2(1, 0);
+    public static readonly ZERO = new Vec2();
+    public static readonly UP = new Vec2(0, -1);
+    public static readonly DOWN = new Vec2(0, 1);
+    public static readonly LEFT = new Vec2(-1, 0);
+    public static readonly RIGHT = new Vec2(1, 0);
 
     constructor(a: number = 0, b: number = a) {
         this.x = a;
