@@ -1,11 +1,11 @@
 export declare class Vec2 {
     readonly x: number;
     readonly y: number;
-    static ZERO: Vec2;
-    static UP: Vec2;
-    static DOWN: Vec2;
-    static LEFT: Vec2;
-    static RIGHT: Vec2;
+    static readonly ZERO: Vec2;
+    static readonly UP: Vec2;
+    static readonly DOWN: Vec2;
+    static readonly LEFT: Vec2;
+    static readonly RIGHT: Vec2;
     constructor(a?: number, b?: number);
     plus(v: Vec2 | number): Vec2;
     minus(v: Vec2 | number): Vec2;
