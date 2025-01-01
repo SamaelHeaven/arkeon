@@ -1,2 +1,2 @@
-import { Color } from "./color";
-export type Paint = Color;
+import { ColorString } from "./color";
+export type Paint = ColorString;

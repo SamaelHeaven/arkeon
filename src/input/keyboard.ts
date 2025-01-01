@@ -1,5 +1,7 @@
-import { Collection, Game } from "../core";
+import { CollectionUtilities, Game } from "../core";
 import { Key, KeyString } from "./key";
+import setAddAll = CollectionUtilities.Set.addAll;
+import setRemoveAll = CollectionUtilities.Set.removeAll;
 
 export class Keyboard {
     private static _instance: Keyboard | null = null;
@@ -89,27 +91,27 @@ export class Keyboard {
     }
 
     private _updateDownKeys() {
-        Collection.Set.addAll(this._downKeys, this._newPressedKeys);
+        setAddAll(this._downKeys, this._newPressedKeys);
         this._newPressedKeys.clear();
     }
 
     private _updateUpKeys() {
         this._upKeys.clear();
-        Collection.Set.addAll(this._upKeys, this._keys);
-        Collection.Set.removeAll(this._upKeys, this._downKeys);
+        setAddAll(this._upKeys, this._keys);
+        setRemoveAll(this._upKeys, this._downKeys);
     }
 
     private _updatePressedKeys() {
         this._pressedKeys.clear();
-        Collection.Set.addAll(this._pressedKeys, this._newPressedKeys);
-        Collection.Set.removeAll(this._pressedKeys, this._downKeys);
+        setAddAll(this._pressedKeys, this._newPressedKeys);
+        setRemoveAll(this._pressedKeys, this._downKeys);
     }
 
     private _updateReleasedKeys() {
         this._releasedKeys.clear();
-        Collection.Set.addAll(this._releasedKeys, this._newReleasedKeys);
+        setAddAll(this._releasedKeys, this._newReleasedKeys);
         this._newReleasedKeys.clear();
-        Collection.Set.removeAll(this._downKeys, this._releasedKeys);
+        setRemoveAll(this._downKeys, this._releasedKeys);
     }
 
     private _reset() {

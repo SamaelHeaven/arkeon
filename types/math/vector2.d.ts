@@ -1,4 +1,3 @@
-export type Vector2Value = Vector2 | number | [number, number];
 export declare class Vector2 {
     readonly x: number;
     readonly y: number;
@@ -8,14 +7,12 @@ export declare class Vector2 {
     static LEFT: Vector2;
     static RIGHT: Vector2;
     constructor(a?: number, b?: number);
-    static extractValue(value: Vector2Value): Vector2;
-    private static _extractArray;
-    plus(v: Vector2Value): Vector2;
-    minus(v: Vector2Value): Vector2;
-    times(v: Vector2Value): Vector2;
-    div(v: Vector2Value): Vector2;
-    equals(v: Vector2Value): boolean;
-    clamp(min: Vector2Value, max: Vector2Value): Vector2;
+    plus(v: Vector2 | number): Vector2;
+    minus(v: Vector2 | number): Vector2;
+    times(v: Vector2 | number): Vector2;
+    div(v: Vector2 | number): Vector2;
+    equals(v: Vector2 | number): boolean;
+    clamp(min: Vector2 | number, max: Vector2 | number): Vector2;
     clampX(min: number, max: number): Vector2;
     clampY(min: number, max: number): Vector2;
     distanceTo(v: Vector2): number;

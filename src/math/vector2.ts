@@ -1,6 +1,5 @@
-import { clamp } from "./clamp";
-
-export type Vector2Value = Vector2 | number | [number, number];
+import clamp = MathUtilities.clamp;
+import { MathUtilities } from "./math-utilities";
 
 export class Vector2 {
     public readonly x: number;
@@ -17,80 +16,56 @@ export class Vector2 {
         this.y = b;
     }
 
-    public static extractValue(value: Vector2Value): Vector2 {
-        if (typeof value === "number") {
-            return new Vector2(value);
-        }
-        return this._extractArray(value);
-    }
-
-    private static _extractArray(v: Vector2 | [number, number]): Vector2 {
-        if (Array.isArray(v)) {
-            return new Vector2(v[0], v[1]);
-        }
-        return v;
-    }
-
-    public plus(v: Vector2Value): Vector2 {
+    public plus(v: Vector2 | number): Vector2 {
         if (typeof v === "number") {
             return new Vector2(this.x + v, this.y + v);
         }
-        const vector = Vector2._extractArray(v);
-        return new Vector2(this.x + vector.x, this.y + vector.y);
+        return new Vector2(this.x + v.x, this.y + v.y);
     }
 
-    public minus(v: Vector2Value): Vector2 {
+    public minus(v: Vector2 | number): Vector2 {
         if (typeof v === "number") {
             return new Vector2(this.x - v, this.y - v);
         }
-        const vector = Vector2._extractArray(v);
-        return new Vector2(this.x - vector.x, this.y - vector.y);
+        return new Vector2(this.x - v.x, this.y - v.y);
     }
 
-    public times(v: Vector2Value): Vector2 {
+    public times(v: Vector2 | number): Vector2 {
         if (typeof v === "number") {
             return new Vector2(this.x * v, this.y * v);
         }
-        const vector = Vector2._extractArray(v);
-        return new Vector2(this.x * vector.x, this.y * vector.y);
+        return new Vector2(this.x * v.x, this.y * v.y);
     }
 
-    public div(v: Vector2Value): Vector2 {
+    public div(v: Vector2 | number): Vector2 {
         if (typeof v === "number") {
             return v === 0 ? Vector2.ZERO : new Vector2(this.x / v, this.y / v);
         }
-        const vector = Vector2._extractArray(v);
-        return new Vector2(
-            vector.x === 0 ? 0 : this.x / vector.x,
-            vector.y === 0 ? 0 : this.y / vector.y
-        );
+        return new Vector2(v.x === 0 ? 0 : this.x / v.x, v.y === 0 ? 0 : this.y / v.y);
     }
 
-    public equals(v: Vector2Value): boolean {
+    public equals(v: Vector2 | number): boolean {
         if (typeof v === "number") {
             return this.x === v && this.y === v;
         }
-        const vector = Vector2._extractArray(v);
-        return this.x === vector.x && this.y === vector.y;
+        return this.x === v.x && this.y === v.y;
     }
 
-    public clamp(min: Vector2Value, max: Vector2Value): Vector2 {
+    public clamp(min: Vector2 | number, max: Vector2 | number): Vector2 {
         let minX: number, maxX: number, minY: number, maxY: number;
         if (typeof min === "number") {
             minX = min;
             minY = min;
         } else {
-            const minVector = Vector2._extractArray(min);
-            minX = minVector.x;
-            minY = minVector.y;
+            minX = min.x;
+            minY = min.y;
         }
         if (typeof max === "number") {
             maxX = max;
             maxY = max;
         } else {
-            const maxVector = Vector2._extractArray(max);
-            maxX = maxVector.x;
-            maxY = maxVector.y;
+            maxX = max.x;
+            maxY = max.y;
         }
         return new Vector2(clamp(this.x, minX, maxX), clamp(this.y, minY, maxY));
     }

@@ -1,4 +1,4 @@
-export declare namespace Collection {
+export declare namespace CollectionUtilities {
     namespace Array {
         function addAll<T>(destination: Array<T>, elements: Iterable<T>): Array<T>;
         function removeAll<T>(destination: Array<T>, elements: Iterable<T>): Array<T>;

@@ -1,4 +1,4 @@
-export namespace Collection {
+export namespace CollectionUtilities {
     export namespace Array {
         export function addAll<T>(destination: Array<T>, elements: Iterable<T>): Array<T> {
             for (const element of elements) {

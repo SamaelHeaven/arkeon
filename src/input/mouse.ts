@@ -1,5 +1,7 @@
-import { Collection, Game } from "../core";
+import { CollectionUtilities, Game } from "../core";
 import { MouseButton, MouseButtonString } from "./mouse-button";
+import setAddAll = CollectionUtilities.Set.addAll;
+import setRemoveAll = CollectionUtilities.Set.removeAll;
 
 export class Mouse {
     private static _instance: Mouse | null = null;
@@ -76,27 +78,27 @@ export class Mouse {
     }
 
     private _updateDownButtons() {
-        Collection.Set.addAll(this._downButtons, this._newPressedButtons);
+        setAddAll(this._downButtons, this._newPressedButtons);
         this._newPressedButtons.clear();
     }
 
     private _updateUpButtons() {
         this._upButtons.clear();
-        Collection.Set.addAll(this._upButtons, this._buttons);
-        Collection.Set.removeAll(this._upButtons, this._downButtons);
+        setAddAll(this._upButtons, this._buttons);
+        setRemoveAll(this._upButtons, this._downButtons);
     }
 
     private _updatePressedButtons() {
         this._pressedButtons.clear();
-        Collection.Set.addAll(this._pressedButtons, this._newPressedButtons);
-        Collection.Set.removeAll(this._pressedButtons, this._downButtons);
+        setAddAll(this._pressedButtons, this._newPressedButtons);
+        setRemoveAll(this._pressedButtons, this._downButtons);
     }
 
     private _updateReleasedButtons() {
         this._releasedButtons.clear();
-        Collection.Set.addAll(this._releasedButtons, this._newReleasedButtons);
+        setAddAll(this._releasedButtons, this._newReleasedButtons);
         this._newReleasedButtons.clear();
-        Collection.Set.removeAll(this._downButtons, this._releasedButtons);
+        setRemoveAll(this._downButtons, this._releasedButtons);
     }
 
     private _reset() {
