@@ -1,5 +1,5 @@
 import { Keyboard, Mouse } from "../input";
-import { Vector2 } from "../math/";
+import { Vec2 } from "../math/";
 import { Renderer } from "../rendering";
 import { Time } from "../time";
 import { GameOptions } from "./game-options";
@@ -14,7 +14,7 @@ export class Game {
     private _renderer: Renderer = null!;
     private _canvas: HTMLCanvasElement = null!;
     private _scene: Scene = null!;
-    private _size: Vector2 = null!;
+    private _size: Vec2 = null!;
     private _shouldResize: boolean = false;
 
     private constructor() {
@@ -45,7 +45,7 @@ export class Game {
         return this._self._size.y;
     }
 
-    public static get size(): Vector2 {
+    public static get size(): Vec2 {
         return this._self._size;
     }
 
@@ -57,9 +57,9 @@ export class Game {
         return this._self._canvas.height;
     }
 
-    public static get screenSize(): Vector2 {
+    public static get screenSize(): Vec2 {
         const self = this._self;
-        return new Vector2(self._canvas.width, self._canvas.height);
+        return new Vec2(self._canvas.width, self._canvas.height);
     }
 
     public static get scaleFactor(): number {
@@ -92,7 +92,7 @@ export class Game {
     private _launch(options: GameOptions) {
         this._scene = options.scene;
         this._canvas = options.canvas;
-        this._size = new Vector2(options.width ?? 800, options.height ?? 600);
+        this._size = new Vec2(options.width ?? 800, options.height ?? 600);
         this._initialize();
         this._start();
     }
