@@ -156,4 +156,14 @@ export class Color {
     public toString(): ColorString {
         return `rgba(${this.red}, ${this.green}, ${this.blue}, ${this.alpha})`;
     }
+
+    public equals(color: Color | ColorString): boolean {
+        const actualColor = typeof color === "string" ? Color.extract(color) : color;
+        return (
+            this.red === actualColor.red &&
+            this.green === actualColor.green &&
+            this.blue === actualColor.blue &&
+            this.alpha === actualColor.alpha
+        );
+    }
 }
