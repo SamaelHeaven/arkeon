@@ -124,7 +124,6 @@ export class Color {
         let r = 0,
             g = 0,
             b = 0;
-
         if (h >= 0 && h < 60) {
             r = c;
             g = x;

@@ -1,3 +1,4 @@
+export * from "./asset";
 export * from "./collection";
 export * from "./game";
 export * from "./game-options";

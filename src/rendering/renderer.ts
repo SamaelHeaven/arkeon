@@ -11,8 +11,8 @@ export class Renderer {
     private constructor() {
         Game["_ensureLaunched"]();
         this._buffer = new OffscreenCanvas(Game.width, Game.height);
-        this._context = Game.canvas.getContext("2d")!;
-        this._graphics = new Graphics(this._buffer.getContext("2d")!);
+        this._context = Game.canvas.getContext("2d", { alpha: false })!;
+        this._graphics = new Graphics(this._buffer.getContext("2d", { alpha: false })!);
     }
 
     public static get graphics(): Graphics {

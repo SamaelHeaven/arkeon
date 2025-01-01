@@ -3,3 +3,4 @@ export * from "./graphics";
 export * from "./paint";
 export * from "./renderer";
 export * from "./rendering-context";
+export * from "./texture";
