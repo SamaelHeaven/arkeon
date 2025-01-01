@@ -3,7 +3,10 @@ import { Texture } from "../rendering";
 export class Asset {
     private static readonly _textures = new Map<string, Texture>();
 
-    public static loadTexture(name: string, url: string): Promise<void> {
+    public static loadTexture(name: string, url: string): void | Promise<void> {
+        if (this._textures.has(name)) {
+            return;
+        }
         const image = new Image();
         image.src = url;
         const texture = new Texture(image);
