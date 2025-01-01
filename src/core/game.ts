@@ -133,7 +133,7 @@ export class Game {
         if (this._scene === scene) {
             return this._frame();
         }
-        scene.stop();
+        scene.unload();
         return this._scene["_initialize"]().then(() => {
             this._time["_restart"]();
             return this._frame();
