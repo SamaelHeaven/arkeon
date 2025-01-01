@@ -30,5 +30,6 @@ export declare class Color {
     static fromHsl(h: number, s: number, l: number): Color;
     static fromHsla(h: number, s: number, l: number, a: number): Color;
     toString(): ColorString;
+    equals(color: Color | ColorString): boolean;
 }
 export {};
