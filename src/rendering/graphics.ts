@@ -14,7 +14,7 @@ export class Graphics {
 
     constructor(renderingContext: RenderingContext) {
         this._context = renderingContext;
-        this._context.translate(0.5, 0.5);
+        renderingContext.translate(0.5, 0.5);
     }
 
     public get width(): number {
@@ -55,13 +55,15 @@ export class Graphics {
     }
 
     public clear(paint: Paint) {
-        this._context.fillStyle = nativePaint(paint);
-        this._context.fillRect(0, 0, this.width, this.height);
+        const context = this._context;
+        context.fillStyle = nativePaint(paint);
+        context.fillRect(0, 0, this.width, this.height);
     }
 
     public fillRect(position: Vec2, size: Vec2, paint: Paint) {
-        this._context.fillStyle = nativePaint(paint);
-        this._context.fillRect(
+        const context = this._context;
+        context.fillStyle = nativePaint(paint);
+        context.fillRect(
             Math.round(position.x),
             Math.round(position.y),
             Math.round(size.x),
@@ -70,11 +72,12 @@ export class Graphics {
     }
 
     public strokeRect(position: Vec2, size: Vec2, paint: Paint, strokeWidth: number = 1) {
-        this._context.strokeStyle = nativePaint(paint);
-        this._context.lineWidth = strokeWidth;
-        this._context.lineCap = "square";
-        this._context.lineJoin = "miter";
-        this._context.strokeRect(
+        const context = this._context;
+        context.strokeStyle = nativePaint(paint);
+        context.lineWidth = strokeWidth;
+        context.lineCap = "square";
+        context.lineJoin = "miter";
+        context.strokeRect(
             Math.round(position.x),
             Math.round(position.y),
             Math.round(size.x),
@@ -88,16 +91,17 @@ export class Graphics {
         paint: Paint,
         radius: number | [number, number, number, number]
     ) {
-        this._context.fillStyle = nativePaint(paint);
-        this._context.beginPath();
-        this._context.roundRect(
+        const context = this._context;
+        context.fillStyle = nativePaint(paint);
+        context.beginPath();
+        context.roundRect(
             Math.round(position.x),
             Math.round(position.y),
             Math.round(size.x),
             Math.round(size.y),
             radius
         );
-        this._context.fill();
+        context.fill();
     }
 
     public strokeRoundRect(
@@ -107,18 +111,19 @@ export class Graphics {
         radius: number | [number, number, number, number],
         strokeWidth: number = 1
     ) {
-        this._context.strokeStyle = nativePaint(paint);
-        this._context.lineWidth = strokeWidth;
-        this._context.lineCap = "round";
-        this._context.lineJoin = "round";
-        this._context.beginPath();
-        this._context.roundRect(
+        const context = this._context;
+        context.strokeStyle = nativePaint(paint);
+        context.lineWidth = strokeWidth;
+        context.lineCap = "round";
+        context.lineJoin = "round";
+        context.beginPath();
+        context.roundRect(
             Math.round(position.x),
             Math.round(position.y),
             Math.round(size.x),
             Math.round(size.y),
             radius
         );
-        this._context.stroke();
+        context.stroke();
     }
 }

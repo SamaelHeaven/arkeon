@@ -38,14 +38,15 @@ export class Renderer {
     }
 
     private _update() {
+        const context = this._context;
         const screenSize = Game.screenSize.div(devicePixelRatio);
         const scaleFactor = Game.scaleFactor / devicePixelRatio;
         const size = Game.size.times(scaleFactor);
         const position = screenSize.minus(size).div(2);
-        this._context.imageSmoothingEnabled = this._smooth;
-        this._context.fillStyle = "#000";
-        this._context.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0.5, 0.5);
-        this._context.fillRect(0, 0, screenSize.x, screenSize.y);
-        this._context.drawImage(this._buffer, position.x, position.y, size.x, size.y);
+        context.imageSmoothingEnabled = this._smooth;
+        context.fillStyle = "#000";
+        context.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0.5, 0.5);
+        context.fillRect(0, 0, screenSize.x, screenSize.y);
+        context.drawImage(this._buffer, position.x, position.y, size.x, size.y);
     }
 }
