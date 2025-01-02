@@ -14,6 +14,7 @@ export class Graphics {
 
     constructor(renderingContext: RenderingContext) {
         this._context = renderingContext;
+        this._context.translate(0.5, 0.5);
     }
 
     public get width(): number {
@@ -60,7 +61,12 @@ export class Graphics {
 
     public fillRect(position: Vec2, size: Vec2, paint: Paint) {
         this._context.fillStyle = nativePaint(paint);
-        this._context.fillRect(position.x, position.y, size.x, size.y);
+        this._context.fillRect(
+            Math.round(position.x),
+            Math.round(position.y),
+            Math.round(size.x),
+            Math.round(size.y)
+        );
     }
 
     public strokeRect(position: Vec2, size: Vec2, paint: Paint, strokeWidth: number = 1) {
@@ -68,7 +74,12 @@ export class Graphics {
         this._context.lineWidth = strokeWidth;
         this._context.lineCap = "square";
         this._context.lineJoin = "miter";
-        this._context.strokeRect(position.x, position.y, size.x, size.y);
+        this._context.strokeRect(
+            Math.round(position.x),
+            Math.round(position.y),
+            Math.round(size.x),
+            Math.round(size.y)
+        );
     }
 
     public fillRoundRect(
@@ -79,7 +90,13 @@ export class Graphics {
     ) {
         this._context.fillStyle = nativePaint(paint);
         this._context.beginPath();
-        this._context.roundRect(position.x, position.y, size.x, size.y, radius);
+        this._context.roundRect(
+            Math.round(position.x),
+            Math.round(position.y),
+            Math.round(size.x),
+            Math.round(size.y),
+            radius
+        );
         this._context.fill();
     }
 
@@ -95,7 +112,13 @@ export class Graphics {
         this._context.lineCap = "round";
         this._context.lineJoin = "round";
         this._context.beginPath();
-        this._context.roundRect(position.x, position.y, size.x, size.y, radius);
+        this._context.roundRect(
+            Math.round(position.x),
+            Math.round(position.y),
+            Math.round(size.x),
+            Math.round(size.y),
+            radius
+        );
         this._context.stroke();
     }
 }

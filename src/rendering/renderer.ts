@@ -15,10 +15,10 @@ export class Renderer {
             Game.width * devicePixelRatio,
             Game.height * devicePixelRatio
         );
-        const context = this._buffer.getContext("2d", { alpha: false })!;
-        context.scale(devicePixelRatio, devicePixelRatio);
         this._context = Game.canvas.getContext("2d", { alpha: false })!;
-        this._graphics = new Graphics(context);
+        const bufferContext = this._buffer.getContext("2d", { alpha: false })!;
+        bufferContext.scale(devicePixelRatio, devicePixelRatio);
+        this._graphics = new Graphics(bufferContext);
     }
 
     public static get graphics(): Graphics {
@@ -44,7 +44,7 @@ export class Renderer {
         const position = screenSize.minus(size).div(2);
         this._context.imageSmoothingEnabled = this._smooth;
         this._context.fillStyle = "#000";
-        this._context.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+        this._context.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0.5, 0.5);
         this._context.fillRect(0, 0, screenSize.x, screenSize.y);
         this._context.drawImage(this._buffer, position.x, position.y, size.x, size.y);
     }

@@ -24,6 +24,8 @@ export declare class Game {
     static get screenHeight(): number;
     static get screenSize(): Vec2;
     static get scaleFactor(): number;
+    static get fullscreen(): boolean;
+    static set fullscreen(fullscreen: boolean);
     static launch(options: GameOptions): void;
     private static get _self();
     private static _ensureNotLaunched;

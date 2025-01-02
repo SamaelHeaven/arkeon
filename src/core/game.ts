@@ -67,6 +67,20 @@ export class Game {
         return Math.min(self._canvas.width / self._size.x, self._canvas.height / self._size.y);
     }
 
+    public static get fullscreen(): boolean {
+        return document.fullscreenElement === this._self._canvas;
+    }
+
+    public static set fullscreen(fullscreen: boolean) {
+        const self = this._self;
+        const alreadyFullscreen = this.fullscreen;
+        if (!alreadyFullscreen && fullscreen) {
+            self._canvas.requestFullscreen();
+        } else if (alreadyFullscreen && !fullscreen) {
+            document.exitFullscreen();
+        }
+    }
+
     public static launch(options: GameOptions) {
         this._ensureNotLaunched();
         this._launched = true;
@@ -109,6 +123,8 @@ export class Game {
         this._resizeCanvas();
         const resizeObserver = new ResizeObserver(() => (this._shouldResize = true));
         resizeObserver.observe(this._canvas.parentElement!);
+        this._canvas.style.outline = "none";
+        this._canvas.style.imageRendering = "pixelated";
         this._canvas.tabIndex = 0;
         this._canvas.oncontextmenu = () => false;
         this._canvas.focus();
@@ -152,11 +168,11 @@ export class Game {
 
     private _resizeCanvas() {
         const rect = this._canvas.parentElement!.getBoundingClientRect();
-        const width = Math.ceil(rect.width * devicePixelRatio);
-        const height = Math.ceil(rect.height * devicePixelRatio);
+        const width = Math.round(rect.width * devicePixelRatio);
+        const height = Math.round(rect.height * devicePixelRatio);
         this._canvas.width = width;
         this._canvas.height = height;
-        this._canvas.style.width = `${width / devicePixelRatio}px`;
-        this._canvas.style.height = `${height / devicePixelRatio}px`;
+        this._canvas.style.width = `${Math.floor(width / devicePixelRatio)}px`;
+        this._canvas.style.height = `${Math.floor(height / devicePixelRatio)}px`;
     }
 }
