@@ -10,7 +10,7 @@ export class Texture {
 
     constructor(nativeTexture: NativeTexture, position?: Vec2, size?: Vec2) {
         this._nativeTexture = nativeTexture;
-        const textureSize = new Vec2(this._nativeTexture.width, this._nativeTexture.height);
+        const textureSize = new Vec2(nativeTexture.width, nativeTexture.height);
         this.position = position ? position.clamp(0, textureSize) : Vec2.ZERO;
         const maxSize = textureSize.minus(this.position);
         this.size = size ? size.clamp(0, maxSize) : maxSize;
