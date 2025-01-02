@@ -151,8 +151,12 @@ export class Game {
     }
 
     private _resizeCanvas() {
-        const { width, height } = this._canvas.parentElement!.getBoundingClientRect();
+        const rect = this._canvas.parentElement!.getBoundingClientRect();
+        const width = Math.ceil(rect.width * devicePixelRatio);
+        const height = Math.ceil(rect.height * devicePixelRatio);
         this._canvas.width = width;
         this._canvas.height = height;
+        this._canvas.style.width = `${width / devicePixelRatio}px`;
+        this._canvas.style.height = `${height / devicePixelRatio}px`;
     }
 }
